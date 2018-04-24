@@ -84,6 +84,9 @@ function degToRad(degrees) {
 function resizeCanvas() {
   can.style.height = window.innerHeight / 2 + "px";
   can.style.width = can.style.height * (17 / 11) + "px";
+
+  can.height = 13 + 2 * stemLength;
+  triggerExport();
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
@@ -92,6 +95,7 @@ function tile(x, y, colorIndex) {
   ctx.fillStyle = pxls[colorIndex];
   ctx.fillRect(x, y, 1, 1);
 }
+
 
 function renderFlower() {
   ctx.fillStyle = pxls[5];
@@ -137,7 +141,6 @@ function renderFlower() {
   tile(5, y, colors.pot);
   tile(7, y, colors.pot);
   
-  document.getElementById("flowerDisplay").height = y + 1;
 
  window.requestAnimationFrame(renderFlower);
 }
