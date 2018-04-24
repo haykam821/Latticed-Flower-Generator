@@ -127,13 +127,18 @@ const pxls = [
     color: "#66033C",
       name: "Purple",
   },
+  {
+    color: "transparent",
+    name: "*Transparent",
+  }
 ];
 
 Array.from(document.querySelectorAll("select, input")).forEach(element => {
   if (element.nodeName === "SELECT") {
     // Add colors to selects
     pxls.forEach((value, index) => {
-    element.add(new Option(pxls[index].name, index));
+      const color = pxls[index];
+    element.add(new Option(color.name, index));
   });
 }
 
