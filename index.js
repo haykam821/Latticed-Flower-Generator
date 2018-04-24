@@ -4,14 +4,16 @@ const ctx = can.getContext("2d");
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
-const colors = {
-  stem: 1,
-  flowerPetals: 2,
-  flowerCore: 3,
-  pot: 4,
-  dirt: 6,
+const config = {
+  palette: {
+    stem: 1,
+    flowerPetals: 2,
+    flowerCore: 3,
+    pot: 4,
+    dirt: 6,
+  },
 }
-let stemLength = randInt(2,3);
+let stemLength = randInt(2, 3);
 
 const pxls = [
   "#FFFFFF",
@@ -40,7 +42,7 @@ const pxls = [
   "#66033C"
 ];
 const pxln = [
-"White", "Silver", "Light Gray", "Medium Gray", "Dark Gray", "Black", "Pink", "Red", "Dark Red", "Cream", "Tan", "Orange", "Brown", "Dark Brown", "Yellow", "Lime", "Green", "Dark Green", "Teal", "Cyan", "Blue", "Lavender", "Pink", "Purple",
+  "White", "Silver", "Light Gray", "Medium Gray", "Dark Gray", "Black", "Pink", "Red", "Dark Red", "Cream", "Tan", "Orange", "Brown", "Dark Brown", "Yellow", "Lime", "Green", "Dark Green", "Teal", "Cyan", "Blue", "Lavender", "Pink", "Purple",
 ];
 
 Array.from(document.getElementsByTagName("select")).forEach(element => {
@@ -49,19 +51,13 @@ Array.from(document.getElementsByTagName("select")).forEach(element => {
   });
 
   element.addEventListener("change", event => {
-    colors[event.target.id] = pxls.indexOf(event.target.value);
-
-    output.value = JSON.stringify(colors, null, 4);
+    config.palette[event.target.id] = pxls.indexOf(event.target.value);
+    triggerExport();
   });
 });
 
 function triggerExport() {
-    output.value = JSON.stringify({
-        palette: colors,
-        stem: {
-            length: stemLength,
-        },
-    }, null, 4);
+  output.value = JSON.stringify(config, null, 4);
 }
 
 function randInt(min, max) {
@@ -71,8 +67,8 @@ function randInt(min, max) {
 }
 
 randize.addEventListener("click", () => {
-  Object.keys(colors).forEach(key => {
-    colors[key] = randInt(0, pxls.length - 1);
+  Object.keys(config.palette).forEach(key => {
+    config.palette[key] = randInt(0, pxls.length - 1);
   });
 });
 
@@ -102,46 +98,46 @@ function renderFlower() {
   ctx.fillRect(0, 0, can.width, can.height);
 
   let y = 1;
-  tile(5, y, colors.flowerPetals);
-  
-  y += 2;
-  tile(3, y, colors.flowerPetals);
-  tile(5, y, colors.flowerCore);
-  tile(7, y, colors.flowerPetals);
+  tile(5, y, config.palette.flowerPetals);
 
   y += 2;
-  tile(5, y, colors.flowerPetals);
+  tile(3, y, config.palette.flowerPetals);
+  tile(5, y, config.palette.flowerCore);
+  tile(7, y, config.palette.flowerPetals);
 
   y += 2;
-  tile(3, y, colors.stem);
-  tile(5, y, colors.stem);
-  tile(7, y, colors.stem);
-  
+  tile(5, y, config.palette.flowerPetals);
+
+  y += 2;
+  tile(3, y, config.palette.stem);
+  tile(5, y, config.palette.stem);
+  tile(7, y, config.palette.stem);
+
   for (let k = 1; k < stemLength; k++) {
     y += 2;
-    tile(5, y, colors.stem);
+    tile(5, y, config.palette.stem);
   }
 
   y += 2;
-  tile(3, y, colors.dirt);
-  tile(5, y, colors.dirt);
-  tile(7, y, colors.dirt);
-  tile(1, y, colors.pot);
-  tile(9, y, colors.pot);
-  
-  y += 2;
-  tile(3, y, colors.dirt);
-  tile(5, y, colors.dirt);
-  tile(7, y, colors.dirt);
-  tile(1, y, colors.pot);
-  tile(9, y, colors.pot);
+  tile(3, y, config.palette.dirt);
+  tile(5, y, config.palette.dirt);
+  tile(7, y, config.palette.dirt);
+  tile(1, y, config.palette.pot);
+  tile(9, y, config.palette.pot);
 
   y += 2;
-  tile(3, y, colors.pot);
-  tile(5, y, colors.pot);
-  tile(7, y, colors.pot);
-  
+  tile(3, y, config.palette.dirt);
+  tile(5, y, config.palette.dirt);
+  tile(7, y, config.palette.dirt);
+  tile(1, y, config.palette.pot);
+  tile(9, y, config.palette.pot);
 
- window.requestAnimationFrame(renderFlower);
+  y += 2;
+  tile(3, y, config.palette.pot);
+  tile(5, y, config.palette.pot);
+  tile(7, y, config.palette.pot);
+
+
+  window.requestAnimationFrame(renderFlower);
 }
 window.requestAnimationFrame(renderFlower);
