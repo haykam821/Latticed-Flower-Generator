@@ -15,6 +15,7 @@ const config = new Proxy({
 	// Other options
 	stemLength: 2,
 	scale: 1,
+	padding: 0,
 }, {
 	set: (object, property, value) => {
 		object[property] = value;
@@ -183,13 +184,13 @@ window.addEventListener("resize", resizeCanvas);
 
 function tile(x, y, colorIndex) {
 	ctx.fillStyle = pxls[colorIndex].color;
-	ctx.fillRect(x * config.scale, y * config.scale, config.scale, config.scale);
+	ctx.fillRect((config.padding + x) * config.scale, (config.padding + y) * config.scale, config.scale, config.scale);
 }
 
 
 function renderFlower() {
-	can.height = (13 + 2 * config.stemLength) * config.scale;
-	can.width = 11 * config.scale;
+	can.height = (13 + 2 * config.stemLength + 2 * config.padding) * config.scale;
+	can.width = (11 + 2 * config.padding) * config.scale;
 
 	ctx.fillStyle = pxls[config.backgroundColor].color;
 	ctx.fillRect(0, 0, can.width, can.height);
