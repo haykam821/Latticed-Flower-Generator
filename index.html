@@ -1,60 +1,67 @@
 <head>
-<link type="text/css" rel="stylesheet" href="index.css">
-<script src="index.js" defer></script>
+  <link type="text/css" rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
 </head>
-<body><h1>
-  Latticed Flower Generator
-</h1>
-<canvas id="flowerDisplay">
-  Get Google Chrome.
-</canvas> <br />
-<button id="rand">
-  I'm feeling lucky
-</button>
-<h2>
-  Colors
-</h2>
-<b>Background:</b>
-<select id="backgroundColor"></select>
-<br />
-<b>Stem:</b>
-<select id="stemColor"></select>
-<br />
-<b>Flower Petals:</b> <select id="flowerPetalsColor"></select><br />
-<b>Flower Core:</b>
-<select id="flowerCoreColor"></select>
-<br />
-<b>Pot:</b>
-<select id="potColor"></select>
-<br />
-<b>Dirt:</b>
-<select id="dirtColor"></select>
-<h2>
-  Options
-</h2>
-<b>Stem Height:</b>
-<input type="number" min=1 id="stemLength" /><br />
-<b>Scale:</b>
-<input type="number" min=1 max=200 id="scale" />
-<br />
-<b>Padding:</b>
-<input type="number" min=0 max=20 id="padding" />
-<br />
-<b>Pot Width:</b>
-<input type="number" min=1 max=20 id="potWidth" />
-<br />
-<b>Pot Height:</b>
-<input type="number" min=1 max=20 id="potHeight" />
-<br />
-<b>Flower Root Offset:</b>
-<input type="number" min=1 max=20 id="flowerOffset" />
-<p>Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.</p>
-<h2>
-  Export
-</h2>
-<b>Use "Import" on this tool:</b>
-<textarea id="output">
-  
-</textarea>
-<b>Use with CtrlZ's Fiddle:</b> <button id="fiddle">Fiddle it!</button>
+
+<body>
+  <h1>
+    Latticed Flower Generator
+  </h1>
+  <canvas id="flowerDisplay">
+    Get Google Chrome.
+  </canvas>
+  <br />
+  <button id="rand">
+    I'm feeling lucky
+  </button>
+  <h2>
+    Colors
+  </h2>
+  <b>Background:</b>
+  <select id="backgroundColor"></select>
+  <br />
+  <b>Stem:</b>
+  <select id="stemColor"></select>
+  <br />
+  <b>Flower Petals:</b>
+  <select id="flowerPetalsColor"></select>
+  <br />
+  <b>Flower Core:</b>
+  <select id="flowerCoreColor"></select>
+  <br />
+  <b>Pot:</b>
+  <select id="potColor"></select>
+  <br />
+  <b>Dirt:</b>
+  <select id="dirtColor"></select>
+  <h2>
+    Options
+  </h2>
+  <b>Stem Height:</b>
+  <input type="number" min=1 id="stemLength" />
+  <br />
+  <b>Scale:</b>
+  <input type="number" min=1 max=200 id="scale" />
+  <br />
+  <b>Padding:</b>
+  <input type="number" min=0 max=20 id="padding" />
+  <br />
+  <b>Pot Width:</b>
+  <input type="number" min=1 max=20 id="potWidth" />
+  <br />
+  <b>Pot Height:</b>
+  <input type="number" min=1 max=20 id="potHeight" />
+  <br />
+  <b>Flower Root Offset:</b>
+  <input type="number" min=1 max=20 id="flowerOffset" />
+  <p>Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.</p>
+  <h2>
+    Export
+  </h2>
+  <b>Use "Import" on this tool:</b>
+  <textarea id="output">
+
+  </textarea>
+  <b>Use with CtrlZ's Fiddle:</b>
+  <button id="fiddle">Fiddle it!</button>
 </body>
