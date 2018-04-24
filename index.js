@@ -38,10 +38,13 @@ const pxls = [
   "#FF00FF",
   "#66033C"
 ];
+const pxln = [
+"White", "Silver", "Light Gray", "Medium Gray", "Dark Gray", "Black", "Pink", "Red", "Dark Red", "Cream", "Tan", "Orange", "Brown", "Dark Brown", "Yellow", "Lime", "Green", "Dark Green", "Teal", "Cyan", "Blue", "Lavender", "Pink", "Purple",
+];
 
 Array.from(document.getElementsByTagName("select")).forEach(element => {
-  pxls.forEach(color => {
-    element.add(new Option(color, color));
+  pxls.forEach((color, index) => {
+    element.add(new Option(pxln[index], color));
   });
 
   element.addEventListener("change", event => {
