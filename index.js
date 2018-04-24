@@ -192,46 +192,56 @@ function tile(x, y, colorIndex) {
 
 function renderFlower() {
 	can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
-	can.width = (11 + 2 * config.padding) * config.scale;
+	can.width = (11 + 2 * config.padding + 2 * (config.potWidth - 3)) * config.scale;
 
 	ctx.fillStyle = pxls[config.backgroundColor].color;
 	ctx.fillRect(0, 0, can.width, can.height);
 
 	let y = 1;
-	tile(5, y, config.flowerPetalsColor);
+	let x = 1;
+
+	tile(x + 2, y, config.flowerPetalsColor);
 
 	y += 2;
-	tile(3, y, config.flowerPetalsColor);
-	tile(5, y, config.flowerCoreColor);
-	tile(7, y, config.flowerPetalsColor);
+	tile(x, y, config.flowerPetalsColor);
+	tile(x + 2, y, config.flowerCoreColor);
+	tile(x + 4, y, config.flowerPetalsColor);
 
 	y += 2;
-	tile(5, y, config.flowerPetalsColor);
+	tile(x + 2, y, config.flowerPetalsColor);
 
 	y += 2;
-	tile(3, y, config.stemColor);
-	tile(5, y, config.stemColor);
-	tile(7, y, config.stemColor);
+	tile(x, y, config.stemColor);
+	tile(x + 2, y, config.stemColor);
+	tile(x + 4, y, config.stemColor);
 
 	for (let k = 1; k < config.stemLength; k++) {
 		y += 2;
-		tile(5, y, config.stemColor);
+		tile(x + 2, y, config.stemColor);
 	}
 
 	for (let l = 0; l < config.potHeight; l++) {
 		y += 2;
+		x = 1;
 
-		tile(3, y, config.dirtColor);
-		tile(5, y, config.dirtColor);
-		tile(7, y, config.dirtColor);
-		tile(1, y, config.potColor);
-		tile(9, y, config.potColor);
+		tile(x, y, config.potColor);
+
+		for (let m = 0; m < config.potWidth; m++) {
+			x += 2;
+			tile(x, y, config.dirtColor);
+		}
+
+		x += 2;
+		tile(x, y, config.potColor);
 	}
 
 	y += 2;
-	tile(3, y, config.potColor);
-	tile(5, y, config.potColor);
-	tile(7, y, config.potColor);
+	x = 1;
+
+	for (let m = 0; m < config.potWidth; m++) {
+		x += 2;
+		tile(x, y, config.potColor);
+	}
 
 
 	window.requestAnimationFrame(renderFlower);
