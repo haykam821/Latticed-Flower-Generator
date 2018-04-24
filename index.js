@@ -136,7 +136,9 @@ function renderFlower() {
   tile(3, y, colors.pot);
   tile(5, y, colors.pot);
   tile(7, y, colors.pot);
+  
+  document.getElementById("flowerDisplay").height = y + 1;
 
-  window.requestAnimationFrame(renderFlower);
+ window.requestAnimationFrame(renderFlower);
 }
 window.requestAnimationFrame(renderFlower);
