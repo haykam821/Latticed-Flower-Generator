@@ -10,6 +10,7 @@ const config = new Proxy({
   flowerCoreColor: 21,
   potColor: 11,
   dirtColor: 12,
+  backgroundColor: 5,
   stemLength: 2,
 }, {
   set: (object, property, value) => {
@@ -112,7 +113,7 @@ function tile(x, y, colorIndex) {
 function renderFlower() {
   can.height = 13 + 2 * config.stemLength;
 
-  ctx.fillStyle = pxls[5];
+  ctx.fillStyle = pxls[config.backgroundColor];
   ctx.fillRect(0, 0, can.width, can.height);
 
   let y = 1;
