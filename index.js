@@ -16,6 +16,8 @@ const config = new Proxy({
 	stemLength: 2,
 	scale: 1,
 	padding: 0,
+	potWidth: 3,
+	potHeight: 2,
 }, {
 	set: (object, property, value) => {
 		object[property] = value;
@@ -189,7 +191,7 @@ function tile(x, y, colorIndex) {
 
 
 function renderFlower() {
-	can.height = (13 + 2 * config.stemLength + 2 * config.padding) * config.scale;
+	can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
 	can.width = (11 + 2 * config.padding) * config.scale;
 
 	ctx.fillStyle = pxls[config.backgroundColor].color;
@@ -216,19 +218,15 @@ function renderFlower() {
 		tile(5, y, config.stemColor);
 	}
 
-	y += 2;
-	tile(3, y, config.dirtColor);
-	tile(5, y, config.dirtColor);
-	tile(7, y, config.dirtColor);
-	tile(1, y, config.potColor);
-	tile(9, y, config.potColor);
+	for (let l = 0; l < config.potHeight; l++) {
+		y += 2;
 
-	y += 2;
-	tile(3, y, config.dirtColor);
-	tile(5, y, config.dirtColor);
-	tile(7, y, config.dirtColor);
-	tile(1, y, config.potColor);
-	tile(9, y, config.potColor);
+		tile(3, y, config.dirtColor);
+		tile(5, y, config.dirtColor);
+		tile(7, y, config.dirtColor);
+		tile(1, y, config.potColor);
+		tile(9, y, config.potColor);
+	}
 
 	y += 2;
 	tile(3, y, config.potColor);
