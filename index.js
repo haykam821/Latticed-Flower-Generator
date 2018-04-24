@@ -21,7 +21,13 @@ const config = new Proxy({
     triggerExport();
   },
 });
-config.stemLength = 3;
+
+window.addEventListener("load", () => {
+  // Hacky code to make defaults work
+  Object.keys(config).forEach(key => {
+    config[key] = config[key];
+  });
+});
 
 const pxls = [
   "#FFFFFF",
@@ -61,8 +67,9 @@ Array.from(document.querySelectorAll("select, input")).forEach(element => {
   });
 }
 
-  element.addEventListener("change", event => {
-    config[event.target.id] = event.target.value;
+  element.addEventListener("input", event => {
+    const asInt = parseInt(event.target.value)
+    config[event.target.id] = isNaN(asInt) ? event.target.value : asInt;
   });
 });
 
