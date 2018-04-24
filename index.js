@@ -31,40 +31,109 @@ window.addEventListener("load", () => {
 });
 
 const pxls = [
-  "#FFFFFF",
-  "#CDCDCD",
-  "#888888",
-  "#555555",
-  "#222222",
-  "#000000",
-  "#FFA7D1",
-  "#E50000",
-  "#800000",
-  "#FFDDCA",
-  "#F6B389",
-  "#E59500",
-  "#A06A42",
-  "#604028",
-  "#E5D900",
-  "#94E044",
-  "#02BE01",
-  "#005F00",
-  "#00D3DD",
-  "#0083C7",
-  "#0000EA",
-  "#CF6EE4",
-  "#FF00FF",
-  "#66033C"
-];
-const pxln = [
-  "White", "Silver", "Light Gray", "Medium Gray", "Dark Gray", "Black", "Pink", "Red", "Dark Red", "Cream", "Tan", "Orange", "Brown", "Dark Brown", "Yellow", "Lime", "Green", "Dark Green", "Teal", "Cyan", "Blue", "Lavender", "Pink", "Purple",
+  {
+    color: "#FFFFFF",
+    name: "White",
+  },
+  {
+    color: "#CDCDCD",
+    name: "Silver",
+    },
+  {
+    color: "#888888",
+      name: "Light Gray",
+    },
+  {
+    color: "#555555",
+      name: "Medium Gray",
+    },
+  {
+    color: "#222222",
+      name: "Dark Gray",
+    },
+  {
+    color: "#000000",
+      name: "Black",
+    },
+  {
+    color: "#FFA7D1",
+      name: "Pink",
+    },
+  {
+    color: "#E50000",
+      name: "Red",
+    },
+  {
+    color: "#800000",
+      name: "Dark Red",
+    },
+  {
+    color: "#FFDDCA",
+      name: "Cream",
+    },
+  {
+    color: "#F6B389",
+      name: "Tan",
+    },
+  {
+    color: "#E59500",
+      name: "Orange",
+    },
+  {
+    color: "#A06A42",
+      name: "Brown",
+    },
+  {
+    color: "#604028",
+      name: "Dark Brown",
+    },
+  {
+    color: "#E5D900",
+      name: "Yellow",
+    },
+  {
+    color: "#94E044",
+      name: "Lime",
+    },
+  {
+    color: "#02BE01",
+      name: "Green",
+    },
+  {
+    color: "#005F00",
+      name: "Dark Green",
+    },
+  {
+    color: "#00D3DD",
+      name: "Teal",
+    },
+  {
+    color: "#0083C7",
+      name: "Cyan",
+    },
+  {
+    color: "#0000EA",
+      name: "Blue",
+    },
+  {
+    color: "#CF6EE4",
+      name: "Lavender",
+  },
+  {
+    color: "#FF00FF",
+      name: "Pink",
+  },
+  {
+    color: "#66033C",
+      name: "Purple",
+  },
 ];
 
 Array.from(document.querySelectorAll("select, input")).forEach(element => {
   if (element.nodeName === "SELECT") {
     // Add colors to selects
     pxls.forEach((value, index) => {
-    element.add(new Option(pxln[index], index));
+    element.add(new Option(pxls[index].name, index));
   });
 }
 
@@ -105,7 +174,7 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 function tile(x, y, colorIndex) {
-  ctx.fillStyle = pxls[colorIndex];
+  ctx.fillStyle = pxls[colorIndex].color;
   ctx.fillRect(x, y, 1, 1);
 }
 
@@ -113,7 +182,7 @@ function tile(x, y, colorIndex) {
 function renderFlower() {
   can.height = 13 + 2 * config.stemLength;
 
-  ctx.fillStyle = pxls[config.backgroundColor];
+  ctx.fillStyle = pxls[config.backgroundColor].color;
   ctx.fillRect(0, 0, can.width, can.height);
 
   let y = 1;
