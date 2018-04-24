@@ -121,7 +121,7 @@ const pxls = [
   },
   {
     color: "#FF00FF",
-      name: "Pink",
+      name: "Hot Pink",
   },
   {
     color: "#66033C",
