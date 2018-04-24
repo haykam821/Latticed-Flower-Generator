@@ -11,6 +11,7 @@ const colors = {
   pot: 4,
   dirt: 6,
 }
+let stemLength = randInt(2,3);
 
 const pxls = [
   "#FFFFFF",
@@ -54,6 +55,15 @@ Array.from(document.getElementsByTagName("select")).forEach(element => {
   });
 });
 
+function triggerExport() {
+    output.value = JSON.stringify({
+        palette: colors,
+        stem: {
+            length: stemLength,
+        },
+    }, null, 4);
+}
+
 function randInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -87,34 +97,45 @@ function renderFlower() {
   ctx.fillStyle = pxls[5];
   ctx.fillRect(0, 0, can.width, can.height);
 
-  tile(5, 1, colors.flowerPetals);
-  tile(3, 3, colors.flowerPetals);
+  let y = 1;
+  tile(5, y, colors.flowerPetals);
+  
+  y += 2;
+  tile(3, y, colors.flowerPetals);
+  tile(5, y, colors.flowerCore);
+  tile(7, y, colors.flowerPetals);
 
-  tile(5, 3, colors.flowerCore);
+  y += 2;
+  tile(5, y, colors.flowerPetals);
 
-  tile(5, 5, colors.flowerPetals);
-  tile(7, 3, colors.flowerPetals);
+  y += 2;
+  tile(3, y, colors.stem);
+  tile(5, y, colors.stem);
+  tile(7, y, colors.stem);
+  
+  for (let k = 1; k < stemLength; k++) {
+    y += 2;
+    tile(5, y, colors.stem);
+  }
 
-  tile(3, 7, colors.stem);
-  tile(5, 7, colors.stem);
-  tile(7, 7, colors.stem);
-  tile(5, 9, colors.stem);
+  y += 2;
+  tile(3, y, colors.dirt);
+  tile(5, y, colors.dirt);
+  tile(7, y, colors.dirt);
+  tile(1, y, colors.pot);
+  tile(9, y, colors.pot);
+  
+  y += 2;
+  tile(3, y, colors.dirt);
+  tile(5, y, colors.dirt);
+  tile(7, y, colors.dirt);
+  tile(1, y, colors.pot);
+  tile(9, y, colors.pot);
 
-  tile(3, 11, colors.dirt);
-  tile(5, 11, colors.dirt);
-  tile(7, 11, colors.dirt);
-  tile(3, 13, colors.dirt);
-  tile(5, 13, colors.dirt);
-  tile(7, 13, colors.dirt);
-
-  tile(1, 11, colors.pot);
-  tile(9, 11, colors.pot);
-  tile(1, 13, colors.pot);
-  tile(9, 13, colors.pot);
-
-  tile(3, 15, colors.pot);
-  tile(5, 15, colors.pot);
-  tile(7, 15, colors.pot);
+  y += 2;
+  tile(3, y, colors.pot);
+  tile(5, y, colors.pot);
+  tile(7, y, colors.pot);
 
   window.requestAnimationFrame(renderFlower);
 }
