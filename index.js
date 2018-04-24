@@ -18,6 +18,7 @@ const config = new Proxy({
 	padding: 0,
 	potWidth: 3,
 	potHeight: 2,
+	flowerOffset: "",
 }, {
 	set: (object, property, value) => {
 		object[property] = value;
@@ -27,6 +28,10 @@ const config = new Proxy({
 		}
 		triggerExport();
 	},
+});
+
+document.getElementById("fiddle").addEventListener("click", () => {
+	window.location.href = `https://pxlsfiddle.com/?img=${can.toDataURL()}`;
 });
 
 window.addEventListener("load", () => {
@@ -198,7 +203,7 @@ function renderFlower() {
 	ctx.fillRect(0, 0, can.width, can.height);
 
 	let y = 1;
-	let x = 1;
+	let x = (config.flowerOffset > config.potWidth ? config.potWidth : config.flowerOffset ? config.flowerOffset : Math.ceil(config.potWidth / 2)) * 2 - 1;
 
 	tile(x + 2, y, config.flowerPetalsColor);
 
