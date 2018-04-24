@@ -4,16 +4,24 @@ const ctx = can.getContext("2d");
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
-const config = {
-  palette: {
-    stem: 16,
-    flowerPetals: 6,
-    flowerCore: 21,
-    pot: 11,
-    dirt: 12,
-  },
+const config = new Proxy({
+  stemColor: 16,
+  flowerPetalsColor: 6,
+  flowerCoreColor: 21,
+  potColor: 11,
+  dirtColor: 12,
   stemLength: 2,
-};
+}, {
+  set: (object, property, value) => {
+    object[property] = value;
+    const relatedElem = document.getElementById(property);
+    if (relatedElem) {
+      relatedElem.value = value;
+    }
+    triggerExport();
+  },
+});
+config.stemLength = 3;
 
 const pxls = [
   "#FFFFFF",
@@ -45,14 +53,16 @@ const pxln = [
   "White", "Silver", "Light Gray", "Medium Gray", "Dark Gray", "Black", "Pink", "Red", "Dark Red", "Cream", "Tan", "Orange", "Brown", "Dark Brown", "Yellow", "Lime", "Green", "Dark Green", "Teal", "Cyan", "Blue", "Lavender", "Pink", "Purple",
 ];
 
-Array.from(document.getElementsByTagName("select")).forEach(element => {
-  pxls.forEach((value, index) => {
+Array.from(document.querySelectorAll("select, input")).forEach(element => {
+  if (element.nodeName === "SELECT") {
+    // Add colors to selects
+    pxls.forEach((value, index) => {
     element.add(new Option(pxln[index], index));
   });
+}
 
   element.addEventListener("change", event => {
-    config.palette[event.target.id] = event.target.value;
-    triggerExport();
+    config[event.target.id] = event.target.value;
   });
 });
 
@@ -67,8 +77,10 @@ function randInt(min, max) {
 }
 
 randize.addEventListener("click", () => {
-  Object.keys(config.palette).forEach(key => {
-    config.palette[key] = randInt(0, pxls.length - 1);
+  Object.keys(config).forEach(key => {
+    if (key.endsWith("Color")) {
+      config[key] = randInt(0, pxls.length - 1);
+    }
   });
 });
 
@@ -80,9 +92,6 @@ function degToRad(degrees) {
 function resizeCanvas() {
   can.style.height = window.innerHeight / 2 + "px";
   can.style.width = can.style.height * (17 / 11) + "px";
-
-  can.height = 13 + 2 * config.stemLength;
-  triggerExport();
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
@@ -94,48 +103,50 @@ function tile(x, y, colorIndex) {
 
 
 function renderFlower() {
+  can.height = 13 + 2 * config.stemLength;
+
   ctx.fillStyle = pxls[5];
   ctx.fillRect(0, 0, can.width, can.height);
 
   let y = 1;
-  tile(5, y, config.palette.flowerPetals);
+  tile(5, y, config.flowerPetalsColor);
 
   y += 2;
-  tile(3, y, config.palette.flowerPetals);
-  tile(5, y, config.palette.flowerCore);
-  tile(7, y, config.palette.flowerPetals);
+  tile(3, y, config.flowerPetalsColor);
+  tile(5, y, config.flowerCoreColor);
+  tile(7, y, config.flowerPetalsColor);
 
   y += 2;
-  tile(5, y, config.palette.flowerPetals);
+  tile(5, y, config.flowerPetalsColor);
 
   y += 2;
-  tile(3, y, config.palette.stem);
-  tile(5, y, config.palette.stem);
-  tile(7, y, config.palette.stem);
+  tile(3, y, config.stemColor);
+  tile(5, y, config.stemColor);
+  tile(7, y, config.stemColor);
 
   for (let k = 1; k < config.stemLength; k++) {
     y += 2;
-    tile(5, y, config.palette.stem);
+    tile(5, y, config.stemColor);
   }
 
   y += 2;
-  tile(3, y, config.palette.dirt);
-  tile(5, y, config.palette.dirt);
-  tile(7, y, config.palette.dirt);
-  tile(1, y, config.palette.pot);
-  tile(9, y, config.palette.pot);
+  tile(3, y, config.dirtColor);
+  tile(5, y, config.dirtColor);
+  tile(7, y, config.dirtColor);
+  tile(1, y, config.potColor);
+  tile(9, y, config.potColor);
 
   y += 2;
-  tile(3, y, config.palette.dirt);
-  tile(5, y, config.palette.dirt);
-  tile(7, y, config.palette.dirt);
-  tile(1, y, config.palette.pot);
-  tile(9, y, config.palette.pot);
+  tile(3, y, config.dirtColor);
+  tile(5, y, config.dirtColor);
+  tile(7, y, config.dirtColor);
+  tile(1, y, config.potColor);
+  tile(9, y, config.potColor);
 
   y += 2;
-  tile(3, y, config.palette.pot);
-  tile(5, y, config.palette.pot);
-  tile(7, y, config.palette.pot);
+  tile(3, y, config.potColor);
+  tile(5, y, config.potColor);
+  tile(7, y, config.potColor);
 
 
   window.requestAnimationFrame(renderFlower);
