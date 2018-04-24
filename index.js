@@ -6,11 +6,11 @@ const output = document.getElementById("output");
 
 const config = {
   palette: {
-    stem: 1,
-    flowerPetals: 2,
-    flowerCore: 3,
-    pot: 4,
-    dirt: 6,
+    stem: 16,
+    flowerPetals: 6,
+    flowerCore: 21,
+    pot: 11,
+    dirt: 12,
   },
   stemLength: 2,
 };
