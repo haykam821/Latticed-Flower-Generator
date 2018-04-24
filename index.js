@@ -46,12 +46,12 @@ const pxln = [
 ];
 
 Array.from(document.getElementsByTagName("select")).forEach(element => {
-  pxls.forEach((color, index) => {
-    element.add(new Option(pxln[index], color));
+  pxls.forEach((value, index) => {
+    element.add(new Option(pxln[index], index));
   });
 
   element.addEventListener("change", event => {
-    config.palette[event.target.id] = pxls.indexOf(event.target.value);
+    config.palette[event.target.id] = event.target.value;
     triggerExport();
   });
 });
