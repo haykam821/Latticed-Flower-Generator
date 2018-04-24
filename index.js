@@ -12,8 +12,8 @@ const config = {
     pot: 4,
     dirt: 6,
   },
-}
-let stemLength = randInt(2, 3);
+  stemLength: 2,
+};
 
 const pxls = [
   "#FFFFFF",
@@ -81,7 +81,7 @@ function resizeCanvas() {
   can.style.height = window.innerHeight / 2 + "px";
   can.style.width = can.style.height * (17 / 11) + "px";
 
-  can.height = 13 + 2 * stemLength;
+  can.height = 13 + 2 * config.stemLength;
   triggerExport();
 }
 resizeCanvas();
@@ -113,7 +113,7 @@ function renderFlower() {
   tile(5, y, config.palette.stem);
   tile(7, y, config.palette.stem);
 
-  for (let k = 1; k < stemLength; k++) {
+  for (let k = 1; k < config.stemLength; k++) {
     y += 2;
     tile(5, y, config.palette.stem);
   }
