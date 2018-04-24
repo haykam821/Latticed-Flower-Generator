@@ -31,7 +31,7 @@ const config = new Proxy({
 });
 
 document.getElementById("fiddle").addEventListener("click", () => {
-	window.location.href = `https://pxlsfiddle.com/?img=${can.toDataURL()}`;
+	window.location.href = `https://pxlsfiddle.com/?img=${encodeURIComponent(can.toDataURL())}`;
 });
 
 window.addEventListener("load", () => {
