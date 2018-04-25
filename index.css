@@ -8,6 +8,8 @@ body {
 
 #panels {
 	display: table;
+	width: 100%;
+	height: 100%;
 }
 #leftPanel, #rightPanel {
 	display: table-cell;
@@ -15,13 +17,22 @@ body {
 #leftPanel {
 	vertical-align: middle;
     background: black;
+		width: 15%;
+}
+#flowerDisplay {
+  image-rendering: pixelated;
 }
 #rightPanel {
-    background: #aaa;
+    background-color: #999;
+		padding: 16px;
 }
 #scrollContent{
 		overflow: auto;
 		font-family: sans-serif;
+}
+h1 {
+	text-align: center;
+	text-transform: uppercase;
 }
 
 textarea {
