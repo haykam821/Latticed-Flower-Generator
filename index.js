@@ -178,10 +178,6 @@ randize.addEventListener("click", () => {
   });
 });
 
-function degToRad(degrees) {
-  return degrees * Math.PI / 180;
-}
-
 // Resize canvas based on window original size and resizing
 function resizeCanvas() {
   can.style.height = window.innerHeight / 2 + "px";
