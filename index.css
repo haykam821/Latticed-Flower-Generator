@@ -1,6 +1,28 @@
 canvas {
   image-rendering: pixelated;
 }
+body {
+	margin: 0px;
+	overflow: hidden;
+}
+
+#panels {
+	display: table;
+}
+#leftPanel, #rightPanel {
+	display: table-cell;
+}
+#leftPanel {
+	vertical-align: middle;
+    background: black;
+}
+#rightPanel {
+    background: #aaa;
+}
+#scrollContent{
+		overflow: auto;
+		font-family: sans-serif;
+}
 
 textarea {
   width: 100%;
