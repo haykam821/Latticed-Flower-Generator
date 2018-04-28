@@ -178,6 +178,21 @@ randize.addEventListener("click", () => {
   });
 });
 
+const input = document.getElementById("importInput");
+const importButton = document.getElementById("import");
+importButton.addEventListener("click", () => {
+ let newConfig = {};
+ try {
+    newConfig = JSON.parse(input.value);
+ } catch (error) {
+    alert("Malformed JSON");
+ }
+ 
+ Object.keys(newConfig).forEach(key => {
+   config[key] = newConfig[key];
+ });
+});
+
 // Resize canvas based on window original size and resizing
 function resizeCanvas() {
   can.style.height = window.innerHeight / 2 + "px";
