@@ -13,7 +13,8 @@ const config = new Proxy({
   flowerCoreColor: 21,
   potColor: 11,
   dirtColor: 12,
-  backgroundColor: 5,
+  gridColor: 5,
+  backgroundColor: 24,
   // Other options
   stemLength: 2,
   scale: 1,
@@ -202,9 +203,26 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-function tile(x, y, colorIndex) {
+function pixel(x, y, colorIndex) {
   ctx.fillStyle = pxls[colorIndex].color;
   ctx.fillRect((config.padding + x) * config.scale, (config.padding + y) * config.scale, config.scale, config.scale);
+}
+
+function tile(x, y, colorIndex) {
+  // Pixels around the pixel
+  pixel(x - 1, y - 1, config.gridColor);
+  pixel(x - 1, y, config.gridColor);
+  pixel(x - 1, y + 1, config.gridColor);
+
+  pixel(x, y - 1, config.gridColor);
+  pixel(x, y + 1, config.gridColor);
+
+  pixel(x + 1, y - 1, config.gridColor);
+  pixel(x + 1, y, config.gridColor);
+  pixel(x + 1, y + 1, config.gridColor);
+
+  // Actual pixel
+  pixel(x, y, colorIndex);
 }
 
 
