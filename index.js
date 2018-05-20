@@ -13,6 +13,7 @@ const config = new Proxy({
   flowerCoreColor: 21,
   potColor: 11,
   dirtColor: 12,
+  altDirtColor: 13,
   gridColor: 5,
   backgroundColor: 24,
   // Other options
@@ -264,7 +265,7 @@ function renderFlower() {
 
     for (let m = 0; m < config.potWidth; m++) {
       x += 2;
-      tile(x, y, config.dirtColor);
+      tile(x, y, (x / 2 % 2 < 1) ^ (y / 2 % 2 > 1) ? config.altDirtColor : config.dirtColor);
     }
 
     x += 2;
