@@ -67,6 +67,32 @@
   <input type="number" min=1 max=20 id="flowerOffset" />
   <p>Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.</p>
   <h2>
+    Positioning
+  </h2>
+  <p>
+    As it is generally easier to position a flower at a tangible point,
+    this tool allows you to use the position of the flower core to
+    get the corner position for use as the template's position.
+  </p>
+  <table>
+    <tr>
+      <th></th>
+      <th>Core</th>
+      <th>Top-Right</th>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td><input class="noConfig" id="posCoreX" type="number" /></td>
+      <td id="posTopX"></td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td><input class="noConfig" id="posCoreY" type="number" /></td>
+      <td id="posTopY"></td>
+    </tr>
+  </table>
+  
+  <h2>
     Export
   </h2>
   <b>Use "Import" on this tool:</b>
@@ -77,10 +103,7 @@
   <button id="fiddle">Fiddle it!</button><br />
   <b>Use as template without uploading:</b>
   <button id="pxls">Template it!</button><br />
-  <i>Specify X and Y of flower core</i><br />
-  X: <input class="noConfig" id="tempCoreX" type="number" /><br />
-  Y: <input class="noConfig" id="tempCoreY" type="number" />
-  
+
   <h2>
     Import
   </h2>

@@ -44,10 +44,14 @@ document.getElementById("fiddle").addEventListener("click", () => {
   window.open(`https://pxlsfiddle.com/?img=${imgData()}`);
 });
 document.getElementById("pxls").addEventListener("click", () => {
-  const tempX = document.getElementById("tempCoreX").value - corePos.x;
-  const tempY = document.getElementById("tempCoreY").value - corePos.y;
+  window.open(`https://pxls.space/#template=${imgData()}`);
+});
 
-  window.open(`https://pxls.space/#template=${imgData()}&ox=${tempX}&x=${tempX}&oy=${tempY}&y=${tempY}&scale=12`);
+document.getElementById("posCoreX").addEventListener("input", (event) => {
+  document.getElementById("posTopX").innerHTML = event.target.value - corePos.x;
+});
+document.getElementById("posCoreY").addEventListener("input", (event) => {
+  document.getElementById("posTopY").innerHTML = event.target.value - corePos.y;
 });
 
 window.addEventListener("load", () => {
