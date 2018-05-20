@@ -30,6 +30,8 @@ const config = new Proxy({
     if (relatedElem) {
       relatedElem.value = value;
     }
+
+    renderFlower();
     triggerExport();
   },
 });
@@ -279,8 +281,4 @@ function renderFlower() {
     x += 2;
     tile(x, y, config.potColor);
   }
-
-
-  window.requestAnimationFrame(renderFlower);
 }
-window.requestAnimationFrame(renderFlower);
