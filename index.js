@@ -36,8 +36,18 @@ const config = new Proxy({
   },
 });
 
+function imgData() {
+  return encodeURIComponent(can.toDataURL())
+}
+
 document.getElementById("fiddle").addEventListener("click", () => {
-  window.location.href = `https://pxlsfiddle.com/?img=${encodeURIComponent(can.toDataURL())}`;
+  window.open(`https://pxlsfiddle.com/?img=${imgData()}`);
+});
+document.getElementById("pxls").addEventListener("click", () => {
+  const tempX = document.getElementById("tempCoreX").value - corePos.x;
+  const tempY = document.getElementById("tempCoreY").value - corePos.y;
+
+  window.open(`https://pxls.space/#template=${imgData()}&ox=${tempX}&x=${tempX}&oy=${tempY}&y=${tempY}&scale=12`);
 });
 
 window.addEventListener("load", () => {
@@ -149,7 +159,7 @@ const pxls = [{
   },
 ];
 
-Array.from(document.querySelectorAll("select, input")).forEach(element => {
+Array.from(document.querySelectorAll("select, input:not(.noConfig)")).forEach(element => {
   if (element.nodeName === "SELECT") {
     // Add colors to selects
     pxls.forEach((value, index) => {
@@ -228,6 +238,10 @@ function tile(x, y, colorIndex) {
   pixel(x, y, colorIndex);
 }
 
+let corePos = {
+  x: null,
+  y: null,
+}
 
 function renderFlower() {
   can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
@@ -243,7 +257,12 @@ function renderFlower() {
 
   y += 2;
   tile(x, y, config.flowerPetalsColor);
+
   tile(x + 2, y, config.flowerCoreColor);
+
+  corePos.x = x + 2;
+  corePos.y = y;
+
   tile(x + 4, y, config.flowerPetalsColor);
 
   y += 2;
