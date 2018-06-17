@@ -246,6 +246,10 @@ const corePos = {
 	y: null,
 };
 
+function latticeBetween(x = 0, y = 0, color1 = "#000000", color2 = "#FFFFFF") {
+	return (x / 2 % 2 < 1) ^ (y / 2 % 2 > 1) ? color1 : color2;
+}
+
 function renderFlower() {
 	can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
 	can.width = (11 + 2 * config.padding + 2 * (config.potWidth - 3)) * config.scale;
@@ -289,7 +293,7 @@ function renderFlower() {
 
 		for (let m = 0; m < config.potWidth; m++) {
 			x += 2;
-			tile(x, y, (x / 2 % 2 < 1) ^ (y / 2 % 2 > 1) ? config.altDirtColor : config.dirtColor);
+			tile(x, y, latticeBetween(x, y, config.altDirtColor, config.dirtColor));
 		}
 
 		x += 2;
