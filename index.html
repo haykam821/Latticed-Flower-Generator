@@ -1,117 +1,124 @@
 <head>
-  <link type="text/css" rel="stylesheet" href="index.css">
-  <script src="index.js" defer></script>
+	<link type="text/css" rel="stylesheet" href="index.css">
+	<script src="index.js" defer></script>
 </head>
 
-<body><div id="panels">
+<body>
+	<div id="panels">
 
-<div id="leftPanel">
+		<div id="leftPanel">
 
-  <canvas id="flowerDisplay">
-    Get Google Chrome.
-  </canvas>
-</div>
-<div id="rightPanel"><div id="scrollContent">
+			<canvas id="flowerDisplay">
+				Get Google Chrome.
+			</canvas>
+		</div>
+		<div id="rightPanel">
+			<div id="scrollContent">
 
-  <h1>
-    Latticed Flower Generator
-  </h1>
-  <button id="rand">
-    I'm feeling lucky
-  </button>
-  <h2>
-    Colors
-  </h2>
-  <b>Background:</b>
-  <select id="backgroundColor"></select>
-  <br />
-  <b>Grid:</b>
-  <select id="gridColor"></select>
-  <br />
-  <b>Stem:</b>
-  <select id="stemColor"></select>
-  <br />
-  <b>Flower Petals:</b>
-  <select id="flowerPetalsColor"></select>
-  <br />
-  <b>Flower Core:</b>
-  <select id="flowerCoreColor"></select>
-  <br />
-  <b>Pot:</b>
-  <select id="potColor"></select>
-  <br />
-  <b>Dirt:</b>
-  <select id="dirtColor"></select>
-  <br />
-  <b>Alternate Dirt:</b>
-  <select id="altDirtColor"></select>
-  <h2>
-    Options
-  </h2>
-  <b>Stem Height:</b>
-  <input type="number" min=1 id="stemLength" />
-  <br />
-  <b>Scale:</b>
-  <input type="number" min=1 max=200 id="scale" />
-  <br />
-  <b>Padding:</b>
-  <input type="number" min=0 max=20 id="padding" />
-  <br />
-  <b>Pot Width:</b>
-  <input type="number" min=1 max=20 id="potWidth" />
-  <br />
-  <b>Pot Height:</b>
-  <input type="number" min=1 max=20 id="potHeight" />
-  <br />
-  <b>Flower Root Offset:</b>
-  <input type="number" min=1 max=20 id="flowerOffset" />
-  <p>Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.</p>
-  <h2>
-    Positioning
-  </h2>
-  <p>
-    As it is generally easier to position a flower at a tangible point,
-    this tool allows you to use the position of the flower core to
-    get the corner position for use as the template's position.
-  </p>
-  <table>
-    <tr>
-      <th></th>
-      <th>Core</th>
-      <th>Top-Right</th>
-    </tr>
-    <tr>
-      <td>X</td>
-      <td><input class="noConfig" id="posCoreX" type="number" /></td>
-      <td id="posTopX"></td>
-    </tr>
-    <tr>
-      <td>Y</td>
-      <td><input class="noConfig" id="posCoreY" type="number" /></td>
-      <td id="posTopY"></td>
-    </tr>
-  </table>
-  
-  <h2>
-    Export
-  </h2>
-  <b>Use "Import" on this tool:</b>
- <textarea id="output">
+				<h1>
+					Latticed Flower Generator
+				</h1>
+				<button id="rand">
+					I'm feeling lucky
+				</button>
+				<h2>
+					Colors
+				</h2>
+				<b>Background:</b>
+				<select id="backgroundColor"></select>
+				<br />
+				<b>Grid:</b>
+				<select id="gridColor"></select>
+				<br />
+				<b>Stem:</b>
+				<select id="stemColor"></select>
+				<br />
+				<b>Flower Petals:</b>
+				<select id="flowerPetalsColor"></select>
+				<br />
+				<b>Flower Core:</b>
+				<select id="flowerCoreColor"></select>
+				<br />
+				<b>Pot:</b>
+				<select id="potColor"></select>
+				<br />
+				<b>Dirt:</b>
+				<select id="dirtColor"></select>
+				<br />
+				<b>Alternate Dirt:</b>
+				<select id="altDirtColor"></select>
+				<h2>
+					Options
+				</h2>
+				<b>Stem Height:</b>
+				<input type="number" min=1 id="stemLength" />
+				<br />
+				<b>Scale:</b>
+				<input type="number" min=1 max=200 id="scale" />
+				<br />
+				<b>Padding:</b>
+				<input type="number" min=0 max=20 id="padding" />
+				<br />
+				<b>Pot Width:</b>
+				<input type="number" min=1 max=20 id="potWidth" />
+				<br />
+				<b>Pot Height:</b>
+				<input type="number" min=1 max=20 id="potHeight" />
+				<br />
+				<b>Flower Root Offset:</b>
+				<input type="number" min=1 max=20 id="flowerOffset" />
+				<p>Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.</p>
+				<h2>
+					Positioning
+				</h2>
+				<p>
+					As it is generally easier to position a flower at a tangible point, this tool allows you to use the position of the flower
+					core to get the corner position for use as the template's position.
+				</p>
+				<table>
+					<tr>
+						<th></th>
+						<th>Core</th>
+						<th>Top-Right</th>
+					</tr>
+					<tr>
+						<td>X</td>
+						<td>
+							<input class="noConfig" id="posCoreX" type="number" />
+						</td>
+						<td id="posTopX"></td>
+					</tr>
+					<tr>
+						<td>Y</td>
+						<td>
+							<input class="noConfig" id="posCoreY" type="number" />
+						</td>
+						<td id="posTopY"></td>
+					</tr>
+				</table>
 
-  </textarea>
-  <b>Use with CtrlZ's Fiddle:</b>
-  <button id="fiddle">Fiddle it!</button><br />
-  <b>Use as template without uploading:</b>
-  <button id="pxls">Template it!</button><br />
+				<h2>
+					Export
+				</h2>
+				<b>Use "Import" on this tool:</b>
+				<textarea id="output">
 
-  <h2>
-    Import
-  </h2>
-  <textarea id="importInput">
+				</textarea>
+				<b>Use with CtrlZ's Fiddle:</b>
+				<button id="fiddle">Fiddle it!</button>
+				<br />
+				<b>Use as template without uploading:</b>
+				<button id="pxls">Template it!</button>
+				<br />
 
-  </textarea>
-  <button id="import">Import (must be valid JSON)</button>
-</div>
-</div>
-</div>
+				<h2>
+					Import
+				</h2>
+				<textarea id="importInput">
+
+				</textarea>
+				<button id="import">Import (must be valid JSON)</button>
+			</div>
+		</div>
+	</div>
 </body>
