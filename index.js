@@ -6,61 +6,6 @@ const scrollContent = document.getElementById("scrollContent");
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
-const config = new Proxy({
-	// Colors
-	stemColor: 16,
-	flowerPetalsColor: 6,
-	flowerCoreColor: 21,
-	potColor: 11,
-	dirtColor: 12,
-	altDirtColor: 13,
-	gridColor: 5,
-	backgroundColor: 24,
-	// Other options
-	stemLength: 2,
-	scale: 1,
-	padding: 0,
-	potWidth: 3,
-	potHeight: 2,
-	flowerOffset: "",
-}, {
-	set: (object, property, value) => {
-		object[property] = value;
-		const relatedElem = document.getElementById(property);
-		if (relatedElem) {
-			relatedElem.value = value;
-		}
-
-		renderFlower();
-		triggerExport();
-	},
-});
-
-function imgData() {
-	return encodeURIComponent(can.toDataURL());
-}
-
-document.getElementById("fiddle").addEventListener("click", () => {
-	window.open(`https://pxlsfiddle.com/?img=${imgData()}`);
-});
-document.getElementById("pxls").addEventListener("click", () => {
-	window.open(`https://pxls.space/#template=${imgData()}`);
-});
-
-document.getElementById("posCoreX").addEventListener("input", (event) => {
-	document.getElementById("posTopX").innerHTML = event.target.value - corePos.x;
-});
-document.getElementById("posCoreY").addEventListener("input", (event) => {
-	document.getElementById("posTopY").innerHTML = event.target.value - corePos.y;
-});
-
-window.addEventListener("load", () => {
-	// Hacky code to make defaults work
-	Object.keys(config).forEach(key => {
-		config[key] = config[key];
-	});
-});
-
 const pxls = [{
 	color: "#FFFFFF",
 	name: "White",
@@ -162,16 +107,66 @@ const pxls = [{
 	name: "*Transparent",
 }];
 
-Array.from(document.querySelectorAll("select, input:not(.noConfig)")).forEach(element => {
-	if (element.nodeName === "SELECT") {
-		// Add colors to selects
-		pxls.forEach((value, index) => {
-			const color = pxls[index];
-			element.add(new Option(color.name, index));
-		});
-	}
+const config = new Proxy({
+	// Colors
+	stemColor: pxls[16].color,
+	flowerPetalsColor: pxls[6].color,
+	flowerCoreColor: pxls[21].color,
+	potColor: pxls[11].color,
+	dirtColor: pxls[12].color,
+	altDirtColor: pxls[13].color,
+	gridColor: pxls[5].color,
+	backgroundColor: pxls[24].color,
+	// Other options
+	stemLength: 2,
+	scale: 1,
+	padding: 0,
+	potWidth: 3,
+	potHeight: 2,
+	flowerOffset: "",
+}, {
+	set: (object, property, value) => {
+		object[property] = value;
+		const relatedElem = document.getElementById(property);
+		if (relatedElem) {
+			relatedElem.value = value;
+		}
 
+		renderFlower();
+		triggerExport();
+
+		return true;
+	},
+});
+
+function imgData() {
+	return encodeURIComponent(can.toDataURL());
+}
+
+document.getElementById("fiddle").addEventListener("click", () => {
+	window.open(`https://pxlsfiddle.com/?img=${imgData()}`);
+});
+document.getElementById("pxls").addEventListener("click", () => {
+	window.open(`https://pxls.space/#template=${imgData()}`);
+});
+
+document.getElementById("posCoreX").addEventListener("input", (event) => {
+	document.getElementById("posTopX").innerHTML = event.target.value - corePos.x;
+});
+document.getElementById("posCoreY").addEventListener("input", (event) => {
+	document.getElementById("posTopY").innerHTML = event.target.value - corePos.y;
+});
+
+window.addEventListener("load", () => {
+	// Hacky code to make defaults work
+	Object.keys(config).forEach(key => {
+		config[key] = config[key];
+	});
+});
+
+Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).forEach(element => {
 	element.addEventListener("input", event => {
+		console.log(event.target);
 		const asInt = parseInt(event.target.value);
 		config[event.target.id] = isNaN(asInt) ? event.target.value : asInt;
 	});
@@ -190,7 +185,7 @@ function randInt(min, max) {
 randize.addEventListener("click", () => {
 	Object.keys(config).forEach(key => {
 		if (key.endsWith("Color")) {
-			config[key] = randInt(0, pxls.length - 1);
+			config[key] = pxls[randInt(0, pxls.length - 1)].color;
 		}
 	});
 });
@@ -219,8 +214,8 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-function pixel(x, y, colorIndex) {
-	ctx.fillStyle = pxls[colorIndex].color;
+function pixel(x, y, color) {
+	ctx.fillStyle = color;
 	ctx.fillRect((config.padding + x) * config.scale, (config.padding + y) * config.scale, config.scale, config.scale);
 }
 
@@ -254,7 +249,7 @@ function renderFlower() {
 	can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
 	can.width = (11 + 2 * config.padding + 2 * (config.potWidth - 3)) * config.scale;
 
-	ctx.fillStyle = pxls[config.backgroundColor].color;
+	ctx.fillStyle = config.backgroundColor;
 	ctx.fillRect(0, 0, can.width, can.height);
 
 	let y = 1;
@@ -308,3 +303,69 @@ function renderFlower() {
 		tile(x, y, config.potColor);
 	}
 }
+
+class ColorChooser extends HTMLElement {
+	constructor() {
+		super();
+
+		this.attachShadow({
+			mode: "open",
+		});
+
+		const style = document.createElement("style");
+		style.textContent = `
+			select {
+				height: 20px;
+			}
+
+			input[type=color] {
+				width: 30px;
+			}
+		`;
+		this.shadowRoot.appendChild(style);
+
+		this.selectElem = document.createElement("select");
+		pxls.forEach((value, index) => {
+			this.selectElem.add(new Option(pxls[index].name, pxls[index].color));
+		});
+		this.selectElem.add(new Option("Custom Color", "custom"));
+
+		this.colorElem = document.createElement("input");
+		this.colorElem.type = "color";
+		this.colorElem.value = "#FEFEFE";
+		this.colorElem.style.display = "none";
+
+		this.selectElem.addEventListener("input", () => {
+			config[this.id] = this.value;
+		});
+		this.colorElem.addEventListener("input", () => {
+			config[this.id] = this.value;
+		});
+
+		this.shadowRoot.appendChild(this.selectElem);
+		this.shadowRoot.appendChild(this.colorElem);
+	}
+
+	get value() {
+		if (this.selectElem.value === "custom") {
+			return this.colorElem.value;
+		} else {
+			return this.selectElem.value;
+		}
+	}
+
+	set value(val) {
+		if (Array.from(this.selectElem.children).some(child => child.value === val)) {
+			this.selectElem.value = val;
+			this.colorElem.style.display = "none";
+		} else {
+			this.selectElem.value = "custom";
+			this.colorElem.style.display = "initial";
+			this.colorElem.value = val;
+		}
+
+		return true;
+	}
+}
+
+window.customElements.define("color-chooser", ColorChooser);
