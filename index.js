@@ -166,7 +166,6 @@ window.addEventListener("load", () => {
 
 Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).forEach(element => {
 	element.addEventListener("input", event => {
-		console.log(event.target);
 		const asInt = parseInt(event.target.value);
 		config[event.target.id] = isNaN(asInt) ? event.target.value : asInt;
 	});
