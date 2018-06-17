@@ -172,8 +172,11 @@ Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).for
 });
 
 function triggerExport() {
-	output.value = JSON.stringify(config, null, 4);
+	return output.value = JSON.stringify(config, null, 4);
 }
+document.getElementById("lsSave").addEventListener("click", () => {
+	localStorage.savedConfig = triggerExport();
+});
 
 function randInt(min, max) {
 	min = Math.ceil(min);
@@ -189,19 +192,27 @@ randize.addEventListener("click", () => {
 	});
 });
 
-const input = document.getElementById("importInput");
-const importButton = document.getElementById("import");
-importButton.addEventListener("click", () => {
+function loadFromJSON(json = "{}") {
 	let newConfig = {};
 	try {
-		newConfig = JSON.parse(input.value);
+		newConfig = JSON.parse(json);
 	} catch (error) {
 		alert("Malformed JSON");
 	}
 
+	// Copy over each entry
 	Object.keys(newConfig).forEach(key => {
 		config[key] = newConfig[key];
 	});
+}
+
+const input = document.getElementById("importInput");
+const importButton = document.getElementById("import");
+importButton.addEventListener("click", () => {
+	return loadFromJSON(input.value);
+});
+document.getElementById("lsLoad").addEventListener("click", () => {
+	return loadFromJSON(localStorage.savedConfig);
 });
 
 // Resize canvas based on window original size and resizing

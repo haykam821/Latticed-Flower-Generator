@@ -24,7 +24,8 @@
 				<h2>
 					Colors
 				</h2>
-				<b>Background:</b> <color-chooser id="backgroundColor"></color-chooser>
+				<b>Background:</b>
+				<color-chooser id="backgroundColor"></color-chooser>
 				<br />
 				<b>Grid:</b>
 				<color-chooser id="gridColor"></color-chooser>
@@ -103,6 +104,9 @@
 				<textarea id="output">
 
 				</textarea>
+				<b>Save in Local Storage:</b>
+				<button id="lsSave" title="Use the 'Load in Local Storage' button in the Import section to load this data.">Save in Local Storage</button>
+				<br />
 				<b>Use with CtrlZ's Fiddle:</b>
 				<button id="fiddle">Fiddle it!</button>
 				<br />
@@ -117,6 +121,7 @@
 
 				</textarea>
 				<button id="import">Import (must be valid JSON)</button>
+				<button id="lsLoad" title="You must have used the 'Save in Local Storage' button in the Export section first to use this feature.">Import from Local Storage</button>
 			</div>
 		</div>
 	</div>
