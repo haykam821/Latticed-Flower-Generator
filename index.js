@@ -324,12 +324,14 @@ class ColorChooser extends HTMLElement {
 		this.shadowRoot.appendChild(style);
 
 		this.selectElem = document.createElement("select");
+		this.selectElem.classList.add("form-control");
 		pxls.forEach((value, index) => {
 			this.selectElem.add(new Option(pxls[index].name, pxls[index].color));
 		});
 		this.selectElem.add(new Option("Custom Color", "custom"));
 
 		this.colorElem = document.createElement("input");
+		this.colorElem.classList.add("form-control");
 		this.colorElem.type = "color";
 		this.colorElem.value = "#FEFEFE";
 		this.colorElem.style.display = "none";
