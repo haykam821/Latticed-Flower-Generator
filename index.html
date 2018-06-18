@@ -14,9 +14,6 @@
 							Latticed Flower Generator
 						</h1>
 						<p>Use this tool to generate latticed flowers of all your needs!</p>
-<button class="btn btn-secondary btn-block" id="rand">
-							I'm feeling lucky
-						</button>
 					</div>
 				</div>
 				<br>
@@ -28,8 +25,9 @@
 				<br>
 				<div class="card bg-dark">
 					<div class="card-body">
-						<a class="btn btn-secondary btn-block" href="https://github.com/haykam821/Pxls-Flower-Generator">View on GitHub</a>
-						<a class="btn btn-secondary btn-block" href="https://github.com/haykam821/Pxls-Flower-Generator/issues/new">Submit an Issue</a>
+						<h2>Links</h2>
+						<a class="btn btn-secondary btn-block" href="https://github.com/haykam821/Pxls-Flower-Generator" title="View the source code for this project on GitHub.">View on GitHub</a>
+						<a class="btn btn-secondary btn-block" href="https://github.com/haykam821/Pxls-Flower-Generator/issues/new" title="Open an issue so we can fix the bug or problem you reported.">Submit an Issue</a>
 					</div>
 				</div>
 			</div>
@@ -62,6 +60,11 @@
 						<br />
 						<b>Alternate Dirt:</b>
 						<color-chooser id="altDirtColor"></color-chooser>
+						<br />
+						<br />
+						<button class="btn btn-secondary btn-block" id="rand" title="Feeling lucky? Click this button to randomize the colors!">
+							Randomize Colors
+						</button>
 					</div>
 				</div>
 				<br>
@@ -100,7 +103,7 @@
 							As it is generally easier to position a flower at a tangible point, this tool allows you to use the position of the flower
 							core to get the corner position for use as the template's position.
 						</p>
-						<table>
+						<table class="table table-bordered table-dark">
 							<tr>
 								<th></th>
 								<th>Core</th>
