@@ -1,8 +1,6 @@
 const can = document.getElementById("flowerDisplay");
 const ctx = can.getContext("2d");
 
-const scrollContent = document.getElementById("scrollContent");
-
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
@@ -214,15 +212,6 @@ importButton.addEventListener("click", () => {
 document.getElementById("lsLoad").addEventListener("click", () => {
 	return loadFromJSON(localStorage.savedConfig);
 });
-
-// Resize canvas based on window original size and resizing
-function resizeCanvas() {
-	can.style.height = window.innerHeight / 2 + "px";
-	can.style.width = can.style.height * (17 / 11) + "px";
-	scrollContent.style.height = window.innerHeight + "px";
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
 
 function pixel(x, y, color) {
 	ctx.fillStyle = color;
