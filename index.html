@@ -100,27 +100,16 @@
 				<h2>
 					Export
 				</h2>
-				<b>Use "Import" on this tool:</b>
-				<textarea id="output">
-
-				</textarea>
-				<b>Save in Local Storage:</b>
-				<button id="lsSave" title="Use the 'Load in Local Storage' button in the Import section to load this data.">Save in Local Storage</button>
-				<br />
-				<b>Use with CtrlZ's Fiddle:</b>
-				<button id="fiddle">Fiddle it!</button>
-				<br />
-				<b>Use as template without uploading:</b>
-				<button id="pxls">Template it!</button>
-				<br />
+				<textarea id="output" title="Paste this later in the 'Import' box to import it."></textarea>
+				<button id="lsSave" title="You can use the 'Load in Local Storage' button in the Import section to load data after clicking this button.">Save in Local Storage</button>
+				<button id="fiddle" title="Opens the flower in the PxlsFiddle.com online tool.">Open in PxlsFiddle.com</button>
+				<button id="pxls" title="Use as a template in Pxls.space without needing to upload it to an image host.">Open in Pxls.space</button>
 
 				<h2>
 					Import
 				</h2>
-				<textarea id="importInput">
-
-				</textarea>
-				<button id="import">Import (must be valid JSON)</button>
+				<textarea id="importInput" title="Paste in data from the 'Export' box to use it again."></textarea>
+				<button id="import" title="Click this to import data from the above box. It must be valid JSON (if it is from that box unedited, it should be).">Import</button>
 				<button id="lsLoad" title="You must have used the 'Save in Local Storage' button in the Export section first to use this feature.">Import from Local Storage</button>
 			</div>
 		</div>
