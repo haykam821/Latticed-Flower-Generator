@@ -173,7 +173,7 @@ function triggerExport() {
 	return output.value = JSON.stringify(config, null, 4);
 }
 document.getElementById("lsSave").addEventListener("click", () => {
-	localStorage.savedConfig = triggerExport();
+	localStorage.setItem("savedConfig", triggerExport());
 	updateLoadStorage();
 });
 
@@ -213,12 +213,12 @@ importButton.addEventListener("click", () => {
 
 const lsLoad = document.getElementById("lsLoad");
 lsLoad.addEventListener("click", () => {
-	return loadFromJSON(localStorage.savedConfig);
+	return loadFromJSON(localStorage.getItem("savedConfig"));
 });
 
 function updateLoadStorage() {
 	// cast to boolean
-	return lsLoad.disabled = !localStorage.savedConfig;
+	return lsLoad.disabled = !localStorage.get("savedConfig");
 }
 updateLoadStorage();
 
