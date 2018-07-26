@@ -4,6 +4,10 @@ const ctx = can.getContext("2d");
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
+/**
+ * A color with a CSS color and a user-facing name.
+ * @type {Object[]}
+ */
 const pxls = [{
 	color: "#FFFFFF",
 	name: "White",
@@ -105,6 +109,9 @@ const pxls = [{
 	name: "*Transparent",
 }];
 
+/**
+ * Configuration that automatically re-renders and exports when a property is updated.
+ */
 const config = new Proxy({
 	// Colors
 	stemColor: pxls[16].color,
@@ -137,6 +144,9 @@ const config = new Proxy({
 	},
 });
 
+/**
+ * Gets a data URL of the flower ready for use in a URL.
+ */
 function imgData() {
 	return encodeURIComponent(can.toDataURL());
 }
@@ -169,6 +179,9 @@ Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).for
 	});
 });
 
+/**
+ * Triggers an export.
+ */
 function triggerExport() {
 	return output.value = JSON.stringify(config, null, 4);
 }
@@ -177,6 +190,11 @@ document.getElementById("lsSave").addEventListener("click", () => {
 	updateLoadStorage();
 });
 
+/**
+ * Generates a random integer within the given bounds.
+ * @param {number} min The minimum allowed.
+ * @param {number} max The maximum allowed.
+ */
 function randInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
@@ -191,6 +209,10 @@ randize.addEventListener("click", () => {
 	});
 });
 
+/**
+ * Imports a JSON configuration.
+ * @param {string} json The JSON to import.
+ */
 function loadFromJSON(json = "{}") {
 	let newConfig = {};
 	try {
@@ -216,17 +238,32 @@ lsLoad.addEventListener("click", () => {
 	return loadFromJSON(localStorage.getItem("savedConfig"));
 });
 
+/**
+ * Updates the Import from Local Storage button's disabled status based on whether a configuration has been saved.
+ */
 function updateLoadStorage() {
 	// cast to boolean
 	return lsLoad.disabled = !localStorage.get("savedConfig");
 }
 updateLoadStorage();
 
+/**
+ * Draws a pixel.
+ * @param {number} x The X coordinate of the pixel.
+ * @param {number} y The Y coordinate of the pixel.
+ * @param {string} color The fill style for the pixel.
+ */
 function pixel(x, y, color) {
 	ctx.fillStyle = color;
 	ctx.fillRect((config.padding + x) * config.scale, (config.padding + y) * config.scale, config.scale, config.scale);
 }
 
+/**
+ * Draws a pixel with 8 border pixels around it.
+ * @param {number} x The X coordinate of the tile.
+ * @param {number} y The Y coordinate of the tile.
+ * @param {number} colorIndex The index for the color of the tile.
+ */
 function tile(x, y, colorIndex) {
 	// Pixels around the pixel
 	pixel(x - 1, y - 1, config.gridColor);
@@ -249,10 +286,20 @@ const corePos = {
 	y: null,
 };
 
+/**
+ * Gets the lattice color based its coordinates.
+ * @param {number} x
+ * @param {number} y
+ * @param {string} color1 The first color in the lattice.
+ * @param {string} color2 The second color in the lattice.
+ */
 function latticeBetween(x = 0, y = 0, color1 = "#000000", color2 = "#FFFFFF") {
 	return (x / 2 % 2 < 1) ^ (y / 2 % 2 > 1) ? color1 : color2;
 }
 
+/**
+ * Renders the flower.
+ */
 function renderFlower() {
 	can.height = (13 + 2 * config.stemLength + 2 * (config.potHeight - 2) + 2 * config.padding) * config.scale;
 	can.width = (11 + 2 * config.padding + 2 * (config.potWidth - 3)) * config.scale;
@@ -312,6 +359,9 @@ function renderFlower() {
 	}
 }
 
+/**
+ * A select element that is populated with each color and a custom color.
+ */
 class ColorChooser extends HTMLElement {
 	constructor() {
 		super();
