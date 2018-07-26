@@ -9,3 +9,7 @@ body {
 	padding: 15px;
 	background-color: #222222 !important;
 }
+
+.json {
+    font-family: monospace, sans-serif;
+}
