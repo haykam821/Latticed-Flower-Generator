@@ -243,7 +243,7 @@ lsLoad.addEventListener("click", () => {
  */
 function updateLoadStorage() {
 	// cast to boolean
-	return lsLoad.disabled = !localStorage.get("savedConfig");
+	return lsLoad.disabled = !localStorage.getItem("savedConfig");
 }
 updateLoadStorage();
 
