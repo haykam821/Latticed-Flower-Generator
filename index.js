@@ -174,6 +174,7 @@ function triggerExport() {
 }
 document.getElementById("lsSave").addEventListener("click", () => {
 	localStorage.savedConfig = triggerExport();
+	updateLoadStorage();
 });
 
 function randInt(min, max) {
@@ -209,9 +210,17 @@ const importButton = document.getElementById("import");
 importButton.addEventListener("click", () => {
 	return loadFromJSON(input.value);
 });
-document.getElementById("lsLoad").addEventListener("click", () => {
+
+const lsLoad = document.getElementById("lsLoad");
+lsLoad.addEventListener("click", () => {
 	return loadFromJSON(localStorage.savedConfig);
 });
+
+function updateLoadStorage() {
+	// cast to boolean
+	return lsLoad.disabled = !localStorage.savedConfig;
+}
+updateLoadStorage();
 
 function pixel(x, y, color) {
 	ctx.fillStyle = color;
