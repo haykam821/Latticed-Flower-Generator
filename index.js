@@ -107,7 +107,8 @@ const pxls = [{
 {
 	color: "transparent",
 	name: "*Transparent",
-}];
+},
+];
 
 /**
  * Configuration that automatically re-renders and exports when a property is updated.

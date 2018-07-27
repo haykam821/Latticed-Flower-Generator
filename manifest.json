@@ -1,9 +1,9 @@
 {
-  "name": "Latticed Flower Generator",
-  "short_name": "Flower Gen",
-  "theme_color": "#6c757d",
-  "background_color": "#222222",
-  "display": "fullscreen",
-  "Scope": "/",
-  "start_url": "/"
+	"name": "Latticed Flower Generator",
+	"short_name": "Flower Gen",
+	"theme_color": "#6c757d",
+	"background_color": "#222222",
+	"display": "fullscreen",
+	"Scope": "/",
+	"start_url": "/"
 }
