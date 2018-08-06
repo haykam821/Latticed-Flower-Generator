@@ -184,7 +184,10 @@ Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).for
  * Triggers an export.
  */
 function triggerExport() {
-	return output.value = JSON.stringify(config, null, 4);
+	const configClone = config;
+	configClone.formatVersion = "1";
+	
+	return output.value = JSON.stringify(configClone, null, 4);
 }
 document.getElementById("lsSave").addEventListener("click", () => {
 	localStorage.setItem("savedConfig", triggerExport());
@@ -210,6 +213,10 @@ randize.addEventListener("click", () => {
 	});
 });
 
+const convertRules = {
+	"formatVersion": undefined,
+};
+
 /**
  * Imports a JSON configuration.
  * @param {string} json The JSON to import.
@@ -224,7 +231,10 @@ function loadFromJSON(json = "{}") {
 
 	// Copy over each entry
 	Object.keys(newConfig).forEach(key => {
-		config[key] = newConfig[key];
+		const convert = convertRules[key];
+		if (convert) {
+			config[convert] = newConfig[key];
+		}
 	});
 }
 
