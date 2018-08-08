@@ -125,6 +125,7 @@ const config = new Proxy({
 	backgroundColor: pxls[24].color,
 	// Other options
 	stemLength: 2,
+	stemType: "top",
 	scale: 1,
 	padding: 0,
 	potWidth: 3,
@@ -173,7 +174,7 @@ window.addEventListener("load", () => {
 	});
 });
 
-Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).forEach(element => {
+Array.from(document.querySelectorAll("color-chooser, select, input:not(.noConfig)")).forEach(element => {
 	element.addEventListener("input", event => {
 		const asInt = parseInt(event.target.value);
 		config[event.target.id] = isNaN(asInt) ? event.target.value : asInt;
