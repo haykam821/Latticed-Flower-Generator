@@ -184,9 +184,9 @@ Array.from(document.querySelectorAll("color-chooser, input:not(.noConfig)")).for
  * Triggers an export.
  */
 function triggerExport() {
-	const configClone = config;
+	const configClone = Object.assign({}, config);
 	configClone.formatVersion = "1";
-	
+
 	return output.value = JSON.stringify(configClone, null, 4);
 }
 document.getElementById("lsSave").addEventListener("click", () => {
