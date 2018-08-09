@@ -91,33 +91,60 @@
                             Options
                         </h2>
                         <p>
-                            This section allows you to configure the flower's general properties. 
+                            This section allows you to configure the flower's general properties.
                         </p>
-                        <b>Stem Height:</b>
-                        <input class="form-control" type="number" min=1 id="stemLength" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Stem Height</span>
+                            </div>
+                            <input class="form-control" type="number" min=1 id="stemLength" />
+                        </div>
                         <br>
-                        <b>Stem Type:</b>
-                        <select class="form-control" id="stemType">
-                            <option value="top">Classic</option>
-                            <option value="alternating">Alternating</option>
-                            <option value="alternating_reverse">Alternating, reversed</option>
-                        </select>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Stem Type</span>
+                            </div>
+                            <select class="custom-select" id="stemType">
+                                <option value="top">Classic</option>
+                                <option value="alternating">Alternating</option>
+                                <option value="alternating_reverse">Alternating, reversed</option>
+                            </select>
+                        </div>
                         <br>
-                        <b>Scale:</b>
-                        <input class="form-control" type="number" min=1 max=200 id="scale" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Scale</span>
+                            </div>
+                            <input class="form-control" type="number" min=1 max=200 id="scale" />
+                        </div>
                         <br>
-                        <b>Padding:</b>
-                        <input class="form-control" type="number" min=0 max=20 id="padding" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Padding</span>
+                            </div>
+                            <input class="form-control" type="number" min=0 max=20 id="padding" />
+                        </div>
                         <br>
-                        <b>Pot Width:</b>
-                        <input class="form-control" type="number" min=1 max=20 id="potWidth" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Pot Width</span>
+                            </div>
+                            <input class="form-control" type="number" min=1 max=20 id="potWidth" />
+                        </div>
                         <br>
-                        <b>Pot Height:</b>
-                        <input class="form-control" type="number" min=1 max=20 id="potHeight" />
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Pot Height</span>
+                            </div>
+                            <input class="form-control" type="number" min=1 max=20 id="potHeight" />
+                        </div>
                         <br>
-                        <b>Flower Root Offset:</b>
-                        <input class="form-control" type="number" min=1 max=20 id="flowerOffset" title="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot."
-                        />
+                        <div class="input-group" title="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Flower Root Offset</span>
+                            </div>
+                            <input class="form-control" type="number" min=1 max=20 id="flowerOffset" />
+                        </div>
                     </div>
                 </div>
                 <br>
