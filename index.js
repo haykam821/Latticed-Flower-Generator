@@ -337,14 +337,31 @@ function renderFlower() {
 	y += 2;
 	tile(x + 2, y, config.flowerPetalsColor);
 
-	y += 2;
-	tile(x, y, config.stemColor);
-	tile(x + 2, y, config.stemColor);
-	tile(x + 4, y, config.stemColor);
+	// Onto stems!
 
-	for (let k = 1; k < config.stemLength; k++) {
+	const bottom = config.stemLength + 1;
+
+	for (let k = 1; k < bottom; k++) {
 		y += 2;
+
+		if (k === 1) {
+			tile(x + 2, y, config.stemColor);
+
+			if (config.stemType === "top") {
+				tile(x, y, config.stemColor);
+				tile(x + 4, y, config.stemColor);
+			}
+		}
+
 		tile(x + 2, y, config.stemColor);
+
+		if (k < bottom - 1) {
+			if (config.stemType === "alternating") {
+				tile(x + (y % 4 === 3 ? 0 : 4), y, config.stemColor);
+			} else if (config.stemType === "alternating_reverse") {
+				tile(x + (y % 4 === 3 ? 4 : 0), y, config.stemColor);
+			}
+		}
 	}
 
 	for (let l = 0; l < config.potHeight; l++) {
