@@ -4,6 +4,8 @@ const ctx = can.getContext("2d");
 const randize = document.getElementById("rand");
 const output = document.getElementById("output");
 
+const log = debug("latticed-flower-generator");
+
 /**
  * A color with a CSS color and a user-facing name.
  * @type {Object[]}
@@ -154,22 +156,27 @@ function imgData() {
 }
 
 document.getElementById("fiddle").addEventListener("click", () => {
+	log("opening flower in pxls fiddle");
 	window.open(`https://pxlsfiddle.com/?img=${imgData()}`);
 });
 document.getElementById("pxls").addEventListener("click", () => {
+	log("opening flower in pxls.space");
 	window.open(`https://pxls.space/#template=${imgData()}`);
 });
 
 document.getElementById("posCoreX").addEventListener("input", (event) => {
+	log("updating corner position from input core position (x)");
 	document.getElementById("posTopX").innerHTML = event.target.value - corePos.x;
 });
 document.getElementById("posCoreY").addEventListener("input", (event) => {
+	log("updating corner position from input core position (y)");
 	document.getElementById("posTopY").innerHTML = event.target.value - corePos.y;
 });
 
 window.addEventListener("load", () => {
 	// Hacky code to make defaults work
 	Object.keys(config).forEach(key => {
+		log("defaulting %s to %s", key, config[key]);
 		config[key] = config[key];
 	});
 });
@@ -187,6 +194,8 @@ Array.from(document.querySelectorAll("color-chooser, select, input:not(.noConfig
 function triggerExport() {
 	const configClone = Object.assign({}, config);
 	configClone.formatVersion = "1";
+	
+	log("exporting a config (format version %s)", configClone.formatVersion);
 
 	return output.value = JSON.stringify(configClone, null, 4);
 }
@@ -209,6 +218,7 @@ function randInt(min, max) {
 randize.addEventListener("click", () => {
 	Object.keys(config).forEach(key => {
 		if (key.endsWith("Color")) {
+			log("randomized color of %s", key);
 			config[key] = pxls[randInt(0, pxls.length - 1)].color;
 		}
 	});
@@ -227,13 +237,14 @@ function loadFromJSON(json = "{}") {
 	try {
 		newConfig = JSON.parse(json);
 	} catch (error) {
-		alert("Malformed JSON");
+		log("error trying to parse json", error);
 	}
 
 	// Copy over each entry
 	Object.keys(newConfig).forEach(key => {
 		const convert = convertRules[key];
 		if (convert) {
+			log("imported %s (value is %s)", key, newConfig[key]);
 			config[convert] = newConfig[key];
 		}
 	});
