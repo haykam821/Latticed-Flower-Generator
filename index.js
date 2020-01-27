@@ -1,3 +1,6 @@
+require("file-loader?name=[name].[ext]!html-minify-loader!./index.html");
+require("file-loader?name=[name].[ext]!html-minify-loader!./index.css");
+
 const can = document.getElementById("flowerDisplay");
 const ctx = can.getContext("2d");
 
