@@ -1,6 +1,20 @@
 {
-	"eslintConfig": {
-		"extends": "eslint-config-haykam"
+	"name": "latticed-flower-generator",
+	"description": "A simple way to generate endless amounts of latticed flowers, with options for colors, pot size, scale, and more.",
+	"version": "1.0.0",
+	"main": "./src/index.js",
+	"dependencies": {
+		"eslint-config-haykam": "^1.8.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-extra-rules": "^0.0.0-development",
+		"eslint-plugin-html": "^6.0.0",
+		"eslint-plugin-json": "^1.4.0",
+		"eslint-plugin-markdown": "^1.0.1",
+		"eslint-plugin-unicorn": "^10.0.0",
+		"file-loader": "^5.0.2",
+		"html-minify-loader": "^1.4.0",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
 	},
 	"devDependencies": {
 		"eslint": "^6.8.0",
@@ -15,8 +29,31 @@
 		"webpack": "^4.41.5",
 		"webpack-cli": "^3.3.10"
 	},
+	"eslintConfig": {
+		"extends": "eslint-config-haykam"
+	},
 	"scripts": {
-		"lint": "eslint \"./**/*.js\" --ignore-path .gitignore",
-		"build": "webpack --config webpack.config.js"
-	}
+		"test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint \"./**/*.js\" --ignore-path .gitignore",
+        "build": "webpack --config webpack.config.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/haykam821/Latticed-Flower-Generator.git"
+	},
+	"keywords": [
+		"pxls",
+		"place",
+		"flower",
+		"canvas",
+		"lattice",
+		"generator",
+		"tool"
+	],
+	"author": "haykam821",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/haykam821/Latticed-Flower-Generator/issues"
+	},
+	"homepage": "https://github.com/haykam821/Latticed-Flower-Generator#readme"
 }
