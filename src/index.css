@@ -1,13 +1,27 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+html, body, #app {
+	width: 100%;
+	height: 100%;
+	background: #222222;
+}
+
+#app {
+	padding: 15px;
+}
+
 canvas {
 	background-size: contain !important;
 	width: 50%;
 	image-rendering: pixelated;
 	display: block;
-}
-
-body {
-	padding: 15px;
-	background-color: #222222 !important;
 }
 
 .json {

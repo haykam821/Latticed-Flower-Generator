@@ -3,8 +3,14 @@ const path = require("path");
 const ManifestPlugin = require("webpack-pwa-manifest");
 
 module.exports = {
-	entry: "./src/index.js",
+	entry: "./src/index.jsx",
 	mode: process.env.WEBPACK_MODE || "production",
+	module: {
+		rules: [{
+			test: /\.jsx$/,
+			use: "jsx-loader",
+		}],
+	},
 	output: {
 		filename: "index.js",
 		path: path.resolve(__dirname, "./dist"),
