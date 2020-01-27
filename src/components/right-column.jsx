@@ -10,15 +10,15 @@ const ImportCard = require("./cards/import-card.jsx");
 class RightColumnUnstyled extends React.Component {
 	render() {
 		return <div className="col text-light">
-			<ColorsCard />
+			<ColorsCard config={this.props.config} />
 			<br/>
-			<OptionsCard />
+			<OptionsCard config={this.props.config} />
 			<br/>
-			<PositioningCard />
+			<PositioningCard config={this.props.config} />
 			<br/>
-			<ExportCard />
+			<ExportCard config={this.props.config} />
 			<br/>
-			<ImportCard />
+			<ImportCard config={this.props.config} />
 		</div>;
 	}
 }
