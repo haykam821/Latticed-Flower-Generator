@@ -110,30 +110,28 @@ const pxls = [{
 {
 	color: "transparent",
 	name: "*Transparent",
-},
-];
+}];
 
 /**
  * Configuration that automatically re-renders and exports when a property is updated.
  */
 const config = new Proxy({
 	// Colors
-	stemColor: pxls[16].color,
-	flowerPetalsColor: pxls[6].color,
-	flowerCoreColor: pxls[21].color,
-	potColor: pxls[11].color,
-	dirtColor: pxls[12].color,
 	altDirtColor: pxls[13].color,
-	gridColor: pxls[5].color,
 	backgroundColor: pxls[24].color,
-	// Other options
+	dirtColor: pxls[12].color,
+	flowerCoreColor: pxls[21].color,
+	flowerOffset: "",
+	flowerPetalsColor: pxls[6].color,
+	gridColor: pxls[5].color,
+	padding: 0,
+	potColor: pxls[11].color,
+	potHeight: 2,
+	potWidth: 3,
+	scale: 1,
+	stemColor: pxls[16].color,
 	stemLength: 2,
 	stemType: "top",
-	scale: 1,
-	padding: 0,
-	potWidth: 3,
-	potHeight: 2,
-	flowerOffset: "",
 }, {
 	set: (object, property, value) => {
 		object[property] = value;
@@ -151,6 +149,7 @@ const config = new Proxy({
 
 /**
  * Gets a data URL of the flower ready for use in a URL.
+ * @returns {string} The flower canvas's data URL.
  */
 function imgData() {
 	return encodeURIComponent(can.toDataURL());
@@ -163,21 +162,22 @@ document.getElementById("pxls").addEventListener("click", () => {
 	window.open(`https://pxls.space/#template=${imgData()}`);
 });
 
-document.getElementById("posCoreX").addEventListener("input", (event) => {
+document.getElementById("posCoreX").addEventListener("input", event => {
 	document.getElementById("posTopX").innerHTML = event.target.value - corePos.x;
 });
-document.getElementById("posCoreY").addEventListener("input", (event) => {
+document.getElementById("posCoreY").addEventListener("input", event => {
 	document.getElementById("posTopY").innerHTML = event.target.value - corePos.y;
 });
 
 window.addEventListener("load", () => {
 	// Hacky code to make defaults work
 	Object.keys(config).forEach(key => {
+		/* eslint-disable-next-line no-self-assign */
 		config[key] = config[key];
 	});
 });
 
-Array.from(document.querySelectorAll("color-chooser, select, input:not(.noConfig)")).forEach(element => {
+[...document.querySelectorAll("color-chooser, select, input:not(.noConfig)")].forEach(element => {
 	element.addEventListener("input", event => {
 		const asInt = parseInt(event.target.value);
 		config[event.target.id] = isNaN(asInt) ? event.target.value : asInt;
@@ -186,9 +186,10 @@ Array.from(document.querySelectorAll("color-chooser, select, input:not(.noConfig
 
 /**
  * Triggers an export.
+ * @returns {string} The exported JSON data.
  */
 function triggerExport() {
-	const configClone = Object.assign({}, config);
+	const configClone = { ...config };
 	configClone.formatVersion = "1";
 
 	return output.value = JSON.stringify(configClone, null, 4);
@@ -202,6 +203,7 @@ document.getElementById("lsSave").addEventListener("click", () => {
  * Generates a random integer within the given bounds.
  * @param {number} min The minimum allowed.
  * @param {number} max The maximum allowed.
+ * @returns {number} The randomized integer.
  */
 function randInt(min, max) {
 	min = Math.ceil(min);
@@ -218,7 +220,7 @@ randize.addEventListener("click", () => {
 });
 
 const convertRules = {
-	"formatVersion": undefined,
+	formatVersion: undefined,
 };
 
 /**
@@ -255,9 +257,10 @@ lsLoad.addEventListener("click", () => {
 
 /**
  * Updates the Import from Local Storage button's disabled status based on whether a configuration has been saved.
+ * @returns {boolean} The new state of the button.
  */
 function updateLoadStorage() {
-	// cast to boolean
+	// Cast to boolean
 	return lsLoad.disabled = !localStorage.getItem("savedConfig");
 }
 updateLoadStorage();
@@ -303,13 +306,28 @@ const corePos = {
 
 /**
  * Gets the lattice color based its coordinates.
- * @param {number} x
- * @param {number} y
+ * @param {number} x The X position.
+ * @param {number} y The Y position.
  * @param {string} color1 The first color in the lattice.
  * @param {string} color2 The second color in the lattice.
+ * @returns {string} One of color1 or color2 based on the given coordinates.
  */
 function latticeBetween(x = 0, y = 0, color1 = "#000000", color2 = "#FFFFFF") {
 	return (x / 2 % 2 < 1) ^ (y / 2 % 2 > 1) ? color1 : color2;
+}
+
+/**
+ * Gets the starting X position for a flower.
+ * @returns {number} The starting X position for a flower.
+ */
+function getRenderStartX() {
+	if (config.flowerOffset > config.potWidth) {
+		return config.potWidth * 2 - 1;
+	} else if (config.flowerOffset) {
+		return config.flowerOffset * 2 - 1;
+	} else {
+		return Math.ceil(config.potWidth / 2) * 2 - 1;
+	}
 }
 
 /**
@@ -323,7 +341,7 @@ function renderFlower() {
 	ctx.fillRect(0, 0, can.width, can.height);
 
 	let y = 1;
-	let x = (config.flowerOffset > config.potWidth ? config.potWidth : config.flowerOffset ? config.flowerOffset : Math.ceil(config.potWidth / 2)) * 2 - 1;
+	let x = getRenderStartX();
 
 	tile(x + 2, y, config.flowerPetalsColor);
 
@@ -412,7 +430,7 @@ class ColorChooser extends HTMLElement {
 				width: 30px;
 			}
 		`;
-		this.shadowRoot.appendChild(style);
+		this.shadowRoot.append(style);
 
 		this.selectElem = document.createElement("select");
 		this.selectElem.classList.add("form-control");
@@ -434,8 +452,8 @@ class ColorChooser extends HTMLElement {
 			config[this.id] = this.value;
 		});
 
-		this.shadowRoot.appendChild(this.selectElem);
-		this.shadowRoot.appendChild(this.colorElem);
+		this.shadowRoot.append(this.selectElem);
+		this.shadowRoot.append(this.colorElem);
 	}
 
 	get value() {
@@ -447,7 +465,7 @@ class ColorChooser extends HTMLElement {
 	}
 
 	set value(val) {
-		if (Array.from(this.selectElem.children).some(child => child.value === val)) {
+		if ([...this.selectElem.children].some(child => child.value === val)) {
 			this.selectElem.value = val;
 			this.colorElem.style.display = "none";
 		} else {
