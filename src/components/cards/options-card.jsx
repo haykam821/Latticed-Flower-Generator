@@ -1,7 +1,8 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
-const { Card, InputGroup, FormControl } = require("react-bootstrap");
+const { Card, FormControl, InputGroup } = require("react-bootstrap");
+const Option = require("../option.jsx");
 
 class OptionsCardUnstyled extends React.Component {
 	render() {
@@ -13,58 +14,37 @@ class OptionsCardUnstyled extends React.Component {
 				<p>
 					This section allows you to configure the flower&apos;s general properties.
 				</p>
-				<InputGroup title="The height of the stem.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Stem Height</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={1} id="stemLength" />
-				</InputGroup>
+				<Option title="Stem Length" description="The height of the stem." id="stemLength" config={this.props.config}>
+					<FormControl as="input" type="number" min={1} />
+				</Option>
 				<br />
-				<InputGroup title="The style of the stem.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Stem Type</InputGroup.Text>
-					</InputGroup.Prepend>
+				<Option title="Stem Type" description="The style of the stem." id="stemType" config={this.props.config}>
 					<select className="custom-select" id="stemType">
 						<option value="top">Classic</option>
 						<option value="alternating">Alternating</option>
 						<option value="alternating_reverse">Alternating, reversed</option>
 					</select>
-				</InputGroup>
+				</Option>
 				<br />
-				<InputGroup title="The scale of the flower.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Scale</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={1} max={200} id="scale" />
-				</InputGroup>
+				<Option title="Scale" description="The scale of the flower." id="scale" config={this.props.config}>
+					<FormControl as="input" type="number" min={1} max={200} />
+				</Option>
 				<br />
-				<InputGroup title="The amount of background pixels the flower should be surrounded with on each side.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Padding</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={0} max={20} id="padding" />
-				</InputGroup>
+				<Option title="Padding" description="The amount of background pixels the flower should be surrounded with on each side." id="padding" config={this.props.config}>
+					<FormControl as="input" type="number" min={0} max={20} />
+				</Option>
 				<br />
-				<InputGroup title="The width of the flower's pot.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Pot Width</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={1} max={20} id="potWidth" />
-				</InputGroup>
+				<Option title="Pot Width" description="The width of the flower's pot." id="potWidth" config={this.props.config}>
+					<FormControl as="input" type="number" min={1} max={20} />
+				</Option>
 				<br />
-				<InputGroup title="The height of the flower's pot.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Pot Height</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={1} max={20} id="potHeight" />
-				</InputGroup>
+				<Option title="Pot Height" description="The height of the flower's pot." id="potHeight" config={this.props.config}>
+					<FormControl as="input" type="number" min={1} max={20} />
+				</Option>
 				<br />
-				<InputGroup title="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.">
-					<InputGroup.Prepend>
-						<InputGroup.Text>Flower Root Offset</InputGroup.Text>
-					</InputGroup.Prepend>
-					<FormControl as="input" type="number" min={1} max={20} id="flowerOffset" />
-				</InputGroup>
+				<Option title="Flower Root Offset" description="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot." id="flowerOffset" config={this.props.config}>
+					<FormControl as="input" type="number" min={1} max={20} />
+				</Option>
 			</Card.Body>
 		</Card>;
 	}

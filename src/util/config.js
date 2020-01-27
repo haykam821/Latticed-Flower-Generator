@@ -34,6 +34,10 @@ class Config extends EventEmitter {
 		return value;
 	}
 
+	get(key) {
+		return this.store && this.store[key];
+	}
+
 	export() {
 		const withVersion = {
 			...this.store,
