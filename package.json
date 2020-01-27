@@ -27,15 +27,16 @@
 		"file-loader": "^5.0.2",
 		"html-minify-loader": "^1.4.0",
 		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10"
+		"webpack-cli": "^3.3.10",
+		"webpack-pwa-manifest": "^4.0.0"
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-haykam"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint \"./**/*.js\" --ignore-path .gitignore",
-        "build": "webpack --config webpack.config.js"
+		"lint": "eslint \"./**/*.js\" --ignore-path .gitignore",
+		"build": "webpack --config webpack.config.js"
 	},
 	"repository": {
 		"type": "git",
