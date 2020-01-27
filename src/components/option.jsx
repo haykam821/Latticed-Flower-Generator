@@ -7,6 +7,24 @@ class OptionUnstyled extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this.onChange.bind(this);
+
+		this.state = {
+			value: this.props.config.get(this.props.id),
+		};
+	}
+
+	componentDidMount() {
+		this.changeListener = this.props.config.on("change", ({ key, value }) => {
+			if (key === this.props.id) {
+				this.setState({
+					value,
+				});
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.props.config.removeListener(this.changeListener);
 	}
 
 	onChange(event) {
@@ -26,13 +44,13 @@ class OptionUnstyled extends React.Component {
 				</InputGroup.Text>
 			</InputGroup.Prepend>
 			{React.cloneElement(this.props.children, {
-				defaultValue: this.props.config.get(this.props.id),
+				value: this.state.value,
 			})}
 		</InputGroup>;
 	}
 }
 
 const Option = styled(OptionUnstyled)`
-	color: red;
+	
 `;
 module.exports = Option;
