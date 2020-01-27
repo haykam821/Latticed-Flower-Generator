@@ -1,10 +1,12 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
+const { Card } = require("react-bootstrap");
+
 class InfoCardUnstyled extends React.Component {
 	render() {
-		return <div className="card bg-dark">
-			<div className="card-body">
+		return <Card className="bg-dark">
+			<Card.Body>
 				<h1>
 					Latticed Flower Generator
 				</h1>
@@ -12,8 +14,8 @@ class InfoCardUnstyled extends React.Component {
 					Use this tool to generate latticed flowers of all your needs! Most buttons and fields can be hovered over to get more information
 					about them.
 				</p>
-			</div>
-		</div>;
+			</Card.Body>
+		</Card>;
 	}
 }
 

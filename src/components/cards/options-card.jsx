@@ -1,71 +1,72 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
+const { Card, InputGroup, FormControl } = require("react-bootstrap");
+
 class OptionsCardUnstyled extends React.Component {
 	render() {
-		return <div className="card bg-dark">
-			<div className="card-body">
+		return <Card className="bg-dark">
+			<Card.Body>
 				<h2>
 					Options
 				</h2>
 				<p>
 					This section allows you to configure the flower&apos;s general properties.
 				</p>
-				<div className="input-group" title="The height of the stem.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Stem Height</span>
-					</div>
-					<input className="form-control" type="number" min={1} id="stemLength" />
-				</div>
+				<InputGroup title="The height of the stem.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Stem Height</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={1} id="stemLength" />
+				</InputGroup>
 				<br />
-				<div className="input-group" title="The style of the stem.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Stem Type</span>
-					</div>
+				<InputGroup title="The style of the stem.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Stem Type</InputGroup.Text>
+					</InputGroup.Prepend>
 					<select className="custom-select" id="stemType">
 						<option value="top">Classic</option>
 						<option value="alternating">Alternating</option>
 						<option value="alternating_reverse">Alternating, reversed</option>
 					</select>
-				</div>
+				</InputGroup>
 				<br />
-				<div className="input-group" title="The scale of the flower.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Scale</span>
-					</div>
-					<input className="form-control" type="number" min={1} max={200} id="scale" />
-				</div>
+				<InputGroup title="The scale of the flower.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Scale</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={1} max={200} id="scale" />
+				</InputGroup>
 				<br />
-				<div className="input-group" title="The amount of background pixels the flower should be surrounded with on each side.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Padding</span>
-					</div>
-					<input className="form-control" type="number" min={0} max={20} id="padding" />
-				</div>
+				<InputGroup title="The amount of background pixels the flower should be surrounded with on each side.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Padding</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={0} max={20} id="padding" />
+				</InputGroup>
 				<br />
-				<div className="input-group" title="The width of the flower's pot.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Pot Width</span>
-					</div>
-					<input className="form-control" type="number" min={1} max={20} id="potWidth" />
-				</div>
+				<InputGroup title="The width of the flower's pot.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Pot Width</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={1} max={20} id="potWidth" />
+				</InputGroup>
 				<br />
-				<div className="input-group" title="The height of the flower's pot.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Pot Height</span>
-					</div>
-					<input className="form-control" type="number" min={1} max={20} id="potHeight" />
-				</div>
+				<InputGroup title="The height of the flower's pot.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Pot Height</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={1} max={20} id="potHeight" />
+				</InputGroup>
 				<br />
-				<div className="input-group" title="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.">
-					<div className="input-group-prepend">
-						<span className="input-group-text">Flower Root Offset</span>
-					</div>
-					<input className="form-control" type="number" min={1} max={20} id="flowerOffset" />
-				</div>
-			</div>
-			<br />
-		</div>;
+				<InputGroup title="Setting the offset to nothing will make it in the middle. A flower cannot be offset to the point where it exits the pot.">
+					<InputGroup.Prepend>
+						<InputGroup.Text>Flower Root Offset</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl as="input" type="number" min={1} max={20} id="flowerOffset" />
+				</InputGroup>
+			</Card.Body>
+		</Card>;
 	}
 }
 

@@ -1,13 +1,15 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
+const { Card } = require("react-bootstrap");
+
 class CanvasCardUnstyled extends React.Component {
 	render() {
-		return <div className="card bg-dark">
-			<div className="card-body">
+		return <Card className="bg-dark">
+			<Card.Body className="card-body">
 				<canvas id="flowerDisplay" className="mx-auto"></canvas>
-			</div>
-		</div>;
+			</Card.Body>
+		</Card>;
 	}
 }
 

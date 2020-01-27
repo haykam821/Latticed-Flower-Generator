@@ -1,10 +1,12 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
+const { Card, Button } = require("react-bootstrap");
+
 class ColorsCardUnstyled extends React.Component {
 	render() {
-		return <div className="card bg-dark">
-			<div className="card-body">
+		return <Card className="bg-dark">
+			<Card.Body>
 				<h2>
 					Colors
 				</h2>
@@ -36,11 +38,11 @@ class ColorsCardUnstyled extends React.Component {
 				<color-chooser id="altDirtColor"></color-chooser>
 				<br />
 				<br />
-				<button className="btn btn-secondary btn-block" id="rand" title="Feeling lucky? Click this button to randomize the colors!">
+				<Button variant="secondary" block id="rand" title="Feeling lucky? Click this button to randomize the colors!">
 					Randomize Colors
-				</button>
-			</div>
-		</div>;
+				</Button>
+			</Card.Body>
+		</Card>;
 	}
 }
 
