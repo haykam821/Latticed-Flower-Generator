@@ -7,7 +7,7 @@ class ExportCardUnstyled extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			config: "{}",
+			config: this.props.config.export() || "{}",
 		};
 
 		this.saveInLocalStorage = this.saveInLocalStorage.bind(this);
@@ -32,11 +32,11 @@ class ExportCardUnstyled extends React.Component {
 	}
 
 	openInPxlsFiddle() {
-		window.open(`https://pxlsfiddle.com/?img=${this.props.canvas.getImageData()}`);
+		window.open(`https://pxlsfiddle.com/?img=${this.props.canvas.getImageURL()}`);
 	}
 
 	openInPxls() {
-		window.open(`https://pxls.space/#template=${this.props.canvas.getImageData()}`);
+		window.open(`https://pxls.space/#template=${this.props.canvas.getImageURL()}`);
 	}
 
 	render() {

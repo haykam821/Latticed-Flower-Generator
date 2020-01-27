@@ -8,11 +8,11 @@ const LinksCard = require("./cards/links-card.jsx");
 class LeftColumnUnstyled extends React.Component {
 	render() {
 		return <div className="col text-light">
-			<InfoCard config={this.props.config} />
+			<InfoCard config={this.props.config} canvas={this.props.canvas} />
 			<br />
-			<CanvasCard config={this.props.config} />
+			<CanvasCard config={this.props.config} canvas={this.props.canvas} />
 			<br />
-			<LinksCard config={this.props.config} />
+			<LinksCard config={this.props.config} canvas={this.props.canvas} />
 		</div>;
 	}
 }
