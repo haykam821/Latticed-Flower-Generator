@@ -2,6 +2,7 @@ const React = require("react");
 const styled = require("styled-components").default;
 
 const { Card, Button } = require("react-bootstrap");
+const ColorSelector = require("../color-selector.jsx");
 
 class ColorsCardUnstyled extends React.Component {
 	render() {
@@ -13,29 +14,21 @@ class ColorsCardUnstyled extends React.Component {
 				<p>
 					Change the colors of each portion of your flower.
 				</p>
-				<b>Background:</b>
-				<color-chooser id="backgroundColor"></color-chooser>
+				<ColorSelector title="Background" id="backgroundColor" config={this.props.config} />
 				<br />
-				<b>Grid:</b>
-				<color-chooser id="gridColor"></color-chooser>
+				<ColorSelector title="Grid" id="gridColor" config={this.props.config} />
 				<br />
-				<b>Stem:</b>
-				<color-chooser id="stemColor"></color-chooser>
+				<ColorSelector title="Stem" id="stemColor" config={this.props.config} />
 				<br />
-				<b>Flower Petals:</b>
-				<color-chooser id="flowerPetalsColor"></color-chooser>
+				<ColorSelector title="Flower Petals" id="flowerPetalsColor" config={this.props.config} />
 				<br />
-				<b>Flower Core:</b>
-				<color-chooser id="flowerCoreColor"></color-chooser>
+				<ColorSelector title="Flower Core" id="flowerCoreColor" config={this.props.config} />
 				<br />
-				<b>Pot:</b>
-				<color-chooser id="potColor"></color-chooser>
+				<ColorSelector title="Pot" id="potColor" config={this.props.config} />
 				<br />
-				<b>Dirt:</b>
-				<color-chooser id="dirtColor"></color-chooser>
+				<ColorSelector title="Dirt" id="dirtColor" config={this.props.config} />
 				<br />
-				<b>Alternate Dirt:</b>
-				<color-chooser id="altDirtColor"></color-chooser>
+				<ColorSelector title="Alternate Dirt" id="altDirtColor" config={this.props.config} />
 				<br />
 				<br />
 				<Button variant="secondary" block id="rand" title="Feeling lucky? Click this button to randomize the colors!">
