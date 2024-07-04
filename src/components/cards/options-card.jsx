@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
-const { Card, FormControl, InputGroup } = require("react-bootstrap");
+const { Card, FormControl } = require("react-bootstrap");
 const Option = require("../option.jsx");
 
 class OptionsCardUnstyled extends React.Component {

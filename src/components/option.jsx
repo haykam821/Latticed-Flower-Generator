@@ -1,7 +1,7 @@
 const React = require("react");
 const styled = require("styled-components").default;
 
-const { InputGroup, FormControl } = require("react-bootstrap");
+const { InputGroup } = require("react-bootstrap");
 
 class OptionUnstyled extends React.Component {
 	constructor(props) {

@@ -105,7 +105,7 @@ class Canvas {
 
 		const bottom = config.stemLength + 1;
 
-		for (let k = 1; k < bottom; k++) {
+		for (let k = 1; k < bottom; k += 1) {
 			y += 2;
 
 			if (k === 1) {
@@ -128,13 +128,13 @@ class Canvas {
 			}
 		}
 
-		for (let l = 0; l < config.potHeight; l++) {
+		for (let l = 0; l < config.potHeight; l += 1) {
 			y += 2;
 			x = 1;
 
 			this.tile(x, y, config.potColor, config);
 
-			for (let m = 0; m < config.potWidth; m++) {
+			for (let m = 0; m < config.potWidth; m += 1) {
 				x += 2;
 				this.tile(x, y, latticeBetween(x, y, config.altDirtColor, config.dirtColor), config);
 			}
@@ -146,7 +146,7 @@ class Canvas {
 		y += 2;
 		x = 1;
 
-		for (let m = 0; m < config.potWidth; m++) {
+		for (let m = 0; m < config.potWidth; m += 1) {
 			x += 2;
 			this.tile(x, y, config.potColor, config);
 		}

@@ -1,3 +1,4 @@
+/* eslint-disable-next-line unicorn/prefer-node-protocol -- Webpack 4 does not support the 'node:' protocol */
 const { EventEmitter } = require("events");
 const colors = require("./colors.js");
 
