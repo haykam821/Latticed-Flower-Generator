@@ -1,0 +1,10 @@
+{
+  "name": "Latticed Flower Generator",
+  "short_name": "Flower Gen",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "background_color": "#222222",
+  "lang": "en",
+  "theme_color": "#6c757d"
+}
